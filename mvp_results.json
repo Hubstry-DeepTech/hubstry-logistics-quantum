@@ -1,0 +1,109 @@
+{
+  "pipeline": {
+    "total_time_sec": 2.7423,
+    "steps": [
+      "iot_telemetry",
+      "qubo_optimize",
+      "sustainability_calc",
+      "security_sign"
+    ]
+  },
+  "iot": {
+    "delivery_points": 7,
+    "depot": {
+      "lat": 48.1351,
+      "lon": 11.582
+    },
+    "fleet_size": 8
+  },
+  "optimizer": {
+    "routes": [
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        1,
+        2,
+        6
+      ]
+    ],
+    "total_distance": 69.49,
+    "best_energy": 69.489,
+    "n_vehicles_used": 2,
+    "execution_time_sec": 2.62,
+    "n_reads": 100
+  },
+  "sustainability": {
+    "optimized_co2_kg": 22.347,
+    "baseline_co2_kg": 34.635,
+    "co2_saved_kg": 12.288,
+    "reduction_pct": 35.5,
+    "total_distance_km": 69.49,
+    "total_deliveries": 6,
+    "total_parcels": 25,
+    "co2_per_delivery_kg": 3.725,
+    "co2_per_parcel_kg": 0.8939,
+    "eu_2030_progress_pct": 64.5,
+    "eu_2030_target_pct": 55,
+    "vehicles_used": 2,
+    "fuel_consumed_liters": 8.34
+  },
+  "security": {
+    "session_id": "SES-1780137316",
+    "pqc": {
+      "kem_algorithm": "Kyber768",
+      "sig_algorithm": "Dilithium3",
+      "fallback_cipher": "AES-256-GCM",
+      "fallback_hash": "SHA3-256",
+      "hsm_simulated": true,
+      "key_id": 0,
+      "key_age_hours": 0.0,
+      "needs_rotation": false,
+      "tls_min_version": "1.3",
+      "data_classification": "RESTRICTED"
+    },
+    "encrypt_operations": 1,
+    "sign_operations": 1,
+    "audit_entries": 2
+  },
+  "encrypted_routes": {
+    "encrypted": {
+      "ciphertext_hex": "2fae49ffd41d16867dfa8c2b1a53cc008d1713ae9d6ba174f2e2abca54ccd2a875931c6c44ca2e39f8959d8e5d9f11075683e4446ff5aa58b20a15d518500095e47871d204e4e5ad9639664d243b64ef707cf73f2fc80c8bb876f3ac16f3770c7454c80b9a",
+      "nonce_hex": "6042e64b60cc876aa19ea81b",
+      "algorithm": "Kyber768+AES-256-GCM",
+      "key_id": 0,
+      "plaintext_len": 101
+    },
+    "signature": {
+      "signature_hex": "7d394d3a77065fcf4f38a10aed020672dc426349275163d5e8275051fe04c870a1bf43e79485dcc70aa356db08e666e1f167140092ca3a24b10c328f1422fa26",
+      "algorithm": "Dilithium3",
+      "key_id": 0
+    },
+    "session_id": "SES-1780137316",
+    "timestamp": 1780137319.4276674
+  },
+  "signed_report": {
+    "optimized_co2_kg": 22.347,
+    "baseline_co2_kg": 34.635,
+    "co2_saved_kg": 12.288,
+    "reduction_pct": 35.5,
+    "total_distance_km": 69.49,
+    "total_deliveries": 6,
+    "total_parcels": 25,
+    "co2_per_delivery_kg": 3.725,
+    "co2_per_parcel_kg": 0.8939,
+    "eu_2030_progress_pct": 64.5,
+    "eu_2030_target_pct": 55,
+    "vehicles_used": 2,
+    "fuel_consumed_liters": 8.34,
+    "_signature": {
+      "signature_hex": "16276acbd8c787dfba43ca28d4cd40cc9575f9ff12d25691acfb8388b68c06809e83d4f27324c2ce3cec45bc64565ac7baf1baec42418de597edd78a3d9198e4",
+      "algorithm": "Dilithium3",
+      "key_id": 0
+    },
+    "_signed_at": 1780137319.4276674,
+    "_session_id": "SES-1780137316"
+  }
+}
