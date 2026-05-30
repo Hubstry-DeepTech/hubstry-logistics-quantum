@@ -1,20 +1,30 @@
 # Hubstry Quantum-Ready Sustainable Logistics Platform
 
-> **Otimização de rotas com inspiração quântica** para logística sustentável de frotas.
+> **Quantum-inspired** route optimization for sustainable fleet logistics.
 > Integra telemetria IoT, resolução QUBO-VRP, análises de CO₂ e criptografia
 > pós-quântica em um único demonstrador para o caso de uso VW / BMW.
 
+> **Quantum-inspired** route optimization for sustainable fleet logistics.
+> Integrates IoT telemetry, QUBO-VRP solving, CO₂ analytics, and post-quantum
+> cryptography in a single demonstrator for the VW / BMW use case.
+
 ---
 
-## Sobre a Hubstry DeepTech
+## Sobre a Hubstry DeepTech / About Hubstry DeepTech
 
 **Hubstry DeepTech** é uma criação original e proprietária de
 **Guilherme Gonçalves Machado** — Founder Técnico, Full Stack, único proprietário.
 
+**Hubstry DeepTech** is an original proprietary creation of
+**Guilherme Gonçalves Machado** — Technical Founder, Full Stack, sole owner.
+
 A organização GitHub `Hubstry-DeepTech` e a conta `guilherme-machado-ceo`
 também são criações originais e proprietárias de Guilherme Gonçalves Machado.
 
-**O que é a Hubstry?**
+The GitHub organization `Hubstry-DeepTech` and the account `guilherme-machado-ceo`
+are also original proprietary creations of Guilherme Gonçalves Machado.
+
+**O que é a Hubstry? / What is Hubstry?**
 
 A Hubstry é um **hub de P&D deep tech** dedicado a acelerar a inovação com
 rigor científico e resiliência estratégica. Nosso propósito é mitigar o risco,
@@ -22,73 +32,105 @@ o custo e o tempo no desenvolvimento de tecnologias proprietárias, permitindo
 que empresas e parceiros acessem soluções de ponta sem arcar sozinhos com o
 peso do investimento interno em pesquisa e desenvolvimento.
 
+Hubstry is a **deep tech P&D hub** dedicated to accelerating innovation with
+scientific rigor and strategic resilience. Our purpose is to mitigate risk, cost,
+and time in the development of proprietary technologies, enabling companies
+and partners to access cutting-edge solutions without bearing the full weight of
+internal R&D investment alone.
+
 Nosso modelo cria **fossos tecnológicos** significativos em setores estratégicos,
 oferecendo vantagem competitiva antecipada e exclusividade temporária em
 tecnologias emergentes — antes que elas se tornem padrão de mercado.
+
+Our model creates **significant technological moats** in strategic sectors,
+offering early competitive advantage and temporary exclusivity in
+emerging technologies — before they become market standards.
 
 Além disso, a Hubstry atua na antecipação de **rotas de disrupção** em horizontes
 de 3 a 5 anos, ajudando organizações a se prepararem contra disrupções
 inesperadas e garantindo maior previsibilidade estratégica.
 
+Additionally, Hubstry operates in anticipating **disruption routes** on
+3-to-5-year horizons, helping organizations prepare against unexpected
+disruptions and ensuring greater strategic predictability.
+
 Em resumo: **somos o parceiro que transforma a incerteza tecnológica em
 vantagem competitiva de longo prazo.**
 
+In summary: **we are the partner that transforms technological uncertainty
+into long-term competitive advantage.**
+
 ---
 
-## Aviso Importante — Leia Antes de Usar
+## Aviso Importante / Important Notice
 
-### Gerenciamento de Expectativas Quânticas
+### Gerenciamento de Expectativas Quânticas / Quantum Expectations Management
 
 Esta é uma plataforma **"Quantum-Ready"** — não uma demonstração de speedup quântico.
 
-**O que SOMOS:**
-- Uma arquitetura de pipeline pronta para produção, projetada para conectar a hardware quântico (D-Wave, IBM Qiskit, Google Cirq)
-- Uma formulação QUBO que mapeia Problemas de Roteamento de Veículos para uma forma resolvível em quantum annealers
-- Uma demonstração funcional com integração real ao **D-Wave Ocean SDK** (`dimod` + `neal`)
-- Quando conectado ao D-Wave Leap, o mesmo QUBO roda no **QPU real** com zero mudanças de código
+This is a **"Quantum-Ready"** platform — not a quantum-speedup demo.
 
-**O que NÃO somos (ainda):**
-- Uma alegação de vantagem quântica. O solver `neal` é SA clássico do ecossistema D-Wave
-- Um benchmark contra hardware quântico. A integração com QPU real é o próximo passo planejado
-- Um sistema de gestão de frotas em produção. Este é um MVP validado que demonstra a arquitetura de integração
+**O que SOMOS / What we ARE:**
+- Uma arquitetura de pipeline pronta para produção, projetada para conectar a hardware quântico (D-Wave, IBM Qiskit, Google Cirq) / A production-ready pipeline architecture designed to plug into quantum hardware
+- Uma formulação QUBO que mapeia VRP para uma forma resolvível em quantum annealers / A QUBO formulation that maps VRP to a form solvable on quantum annealers
+- Uma demonstração funcional com integração real ao **D-Wave Ocean SDK** (`dimod` + `neal`) / A working demonstration with real **D-Wave Ocean SDK** integration
+- Quando conectado ao D-Wave Leap, o mesmo QUBO roda no **QPU real** com zero mudanças de código / When connected to D-Wave Leap, the same QUBO runs on **real QPU** with zero code changes
 
-A proposta de valor é o **pipeline** — não o solver. Quando o hardware quântico amadurecer além das limitações da era NISQ, esta mesma formulação QUBO roda em qubits reais com zero alterações arquiteturais.
+**O que NÃO somos (ainda) / What we are NOT (yet):**
+- Uma alegação de vantagem quântica / A claim of quantum advantage
+- Um benchmark contra hardware quântico — a integração com QPU real é o próximo passo / A benchmark against quantum hardware — QPU integration is the planned next step
+- Um sistema de gestão de frotas em produção — este é um MVP validado / A production fleet management system — this is a validated MVP
 
-### Aviso de Propriedade Intelectual
+A proposta de valor é o **pipeline** — não o solver. Quando o hardware quântico amadurecer, esta formulação QUBO roda em qubits reais com zero alterações arquiteturais.
+
+The value proposition is the **pipeline** — not the solver. When quantum hardware matures, this same QUBO formulation runs on real qubits with zero architectural changes.
+
+### Propriedade Intelectual / Intellectual Property
 
 Este repositório contém **trabalho original proprietário** de Guilherme Gonçalves
 Machado / Hubstry DeepTech. Todo o código-fonte, projetos arquiteturicos,
 formulações de otimização, padrões de integração e documentação são proprietários.
+
+This repository contains **original proprietary work** by Guilherme Gonçalves
+Machado / Hubstry DeepTech. All source code, architectural designs,
+optimization formulations, integration patterns, and documentation are proprietary.
 
 A plataforma integra conceitos de três projetos proprietários da Hubstry DeepTech:
 - **IoT Protocol Hubstry** — arquitetura de telemetria de sensores
 - **Gurudev Core** — framework de otimização quântica
 - **Hubstry Security** — camada de criptografia pós-quântica
 
-Todos os direitos de PI fundacional pertencem a Guilherme Gonçalves Machado.
-Este repositório representa uma integração inédita desses domínios em um pipeline
-de otimização logística unificado.
+The platform integrates concepts from three proprietary Hubstry DeepTech projects:
+- **IoT Protocol Hubstry** — sensor telemetry architecture
+- **Gurudev Core** — quantum optimization framework
+- **Hubstry Security** — post-quantum cryptography layer
 
-**Licença:** CC BY-NC-SA 4.0 — Uso não comercial apenas. Veja [LICENSE](LICENSE).
+Todos os direitos de PI pertencem a Guilherme Gonçalves Machado.
+All IP rights belong to Guilherme Gonçalves Machado.
+
+**Licença / License:** CC BY-NC-SA 4.0 — Uso não comercial apenas / Non-commercial use only. See [LICENSE](LICENSE).
 
 ---
 
-## Dataset: Porto Taxi Trajectory (GPS Real)
+## Dataset: Porto Taxi Trajectory (GPS Real / Real GPS)
 
 Este projeto utiliza dados reais de GPS do **Porto Taxi Trajectory Dataset**,
 coletados de 442 táxis operando na área metropolitana do Porto, Portugal.
 
-O dataset contém trajetórias reais de veículos e é amplamente utilizado em
-pesquisa acadêmica de otimização de rotas (VRP), mineração de trajetórias e
-computação urbana. As coordenadas de 30 pontos de entrega representam locais
-reais da zona metropolitana do Porto, incluindo centro histórico, zona portuária
-de Leixões, aeroporto Francisco Sá Carneiro e bairros periféricos.
+This project uses real GPS data from the **Porto Taxi Trajectory Dataset**,
+collected from 442 taxis operating in the Porto metropolitan area, Portugal.
 
-**Referências acadêmicas:**
-- Zhao, K. et al., "T-Drive: Driving Directions Based on Taxi Trajectories,"
-  ACM SIGSPATIAL, 2015
-- Yuan, N.J. et al., "T-Finder: A Recommender System for Taxi Passengers
-  and Drivers," ACM SIGKDD, 2011
+As coordenadas de 30 pontos de entrega representam locais reais da zona
+metropolitana do Porto: centro histórico, zona portuária de Leixões,
+aeroporto Francisco Sá Carneiro e bairros periféricos.
+
+The coordinates of 30 delivery points represent real locations in the Porto
+metropolitan area: historic center, Leixões port, Francisco Sá Carneiro
+airport, and peripheral neighborhoods.
+
+**Referências acadêmicas / Academic references:**
+- Zhao, K. et al., "T-Drive: Driving Directions Based on Taxi Trajectories," ACM SIGSPATIAL, 2015
+- Yuan, N.J. et al., "T-Finder: A Recommender System for Taxi Passengers and Drivers," ACM SIGKDD, 2011
 - Liu, Y. et al., "Urban Computing with Taxicabs," ACM SIGSPATIAL, 2012
 
 **Source:** [Porto Taxi Trajectory Dataset](https://www.kaggle.com/datasets/cabagnar/porto-taxi-trajectory)
@@ -97,45 +139,50 @@ de Leixões, aeroporto Francisco Sá Carneiro e bairros periféricos.
 
 ## D-Wave Leap Integration
 
-Este projeto integra nativamente com o **D-Wave Ocean SDK**, o mesmo toolkit
-oficial usado para programar o processador quântico D-Wave Advantage.
+Este projeto integra nativamente com o **D-Wave Ocean SDK**, o toolkit
+oficial para programar o processador quântico D-Wave Advantage.
 
-**Como funciona:**
+This project natively integrates with the **D-Wave Ocean SDK**, the official
+toolkit for programming the D-Wave Advantage quantum processor.
+
+**Como funciona / How it works:**
 1. A formulação VRP é convertida em um `dimod.BinaryQuadraticModel` (BQM) real
 2. O BQM é amostrado usando `neal.SimulatedAnnealingSampler` (simulador clássico do ecossistema D-Wave)
 3. Quando conectado ao D-Wave Leap, basta trocar o sampler para `DWaveSampler()` —
    a mesma formulação QUBO roda diretamente no QPU real
 
-**Instalação do D-Wave (opcional):**
+1. The VRP formulation is converted into a real `dimod.BinaryQuadraticModel` (BQM)
+2. The BQM is sampled using `neal.SimulatedAnnealingSampler` (D-Wave ecosystem classical simulator)
+3. When connected to D-Wave Leap, simply swap the sampler to `DWaveSampler()` —
+   the same QUBO formulation runs directly on the real QPU
+
+**Instalação / Installation:**
 ```bash
 pip install -r requirements-dwave.txt
 ```
 
-**Modos de execução:**
+**Modos de execução / Execution modes:**
 ```bash
-# Auto-detect: usa D-Wave se instalado, senão usa builtin SA
-python run_mvp.py
-
-# Forçar D-Wave neal (requer dwave-neal instalado)
-python run_mvp.py --dwave
-
-# Forçar builtin SA puro (zero dependências)
-python run_mvp.py --builtin
+python run_mvp.py              # auto-detect: D-Wave se disponível, senão builtin SA
+python run_mvp.py --dwave      # forçar D-Wave neal / force D-Wave neal
+python run_mvp.py --builtin    # forçar builtin SA puro / force pure builtin SA
 ```
 
-**Para conectar ao QPU real do D-Wave Leap:**
-1. Crie conta gratuita em [D-Wave Leap](https://cloud.dwavesys.com/leap/)
-2. Obtenha o API token
-3. O BQM gerado por `quantum_optimizer.py` pode ser enviado diretamente ao QPU
-   via `dwave.system.DWaveSampler()`
+**Resultados comparativos / Comparative results (Porto Taxi, 6 deliveries):**
+
+| Solver | Tempo / Time | Distância / Distance | CO₂ economizado / Saved | Redução / Reduction |
+|---|---|---|---|---|
+| Built-in SA | 3.57s | 46.61 km | 12.0 kg | 44.4% |
+| **D-Wave neal** | **0.069s** | **43.14 km** | **13.1 kg** | **48.6%** |
 
 ---
 
-## Arquitetura
+## Arquitetura / Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                    run_mvp.py (Entry Point)             │
+│                  (--dwave / --builtin)                   │
 ├──────────┬──────────────────┬────────────────────────────┤
 │ IoT Layer │    Core Layer    │     Security Layer         │
 │          │                  │                            │
@@ -144,129 +191,119 @@ python run_mvp.py --builtin
 │          │   ├─ BQM (dimod) │    simulado via AES+SHA3)  │
 │ GPS real  │   ├─ neal (SA)  │                            │
 │ (Porto    │   └─ builtin SA  │ security_bridge.py         │
-│  Taxi)    │     (fallback)  │   (criptografa rotas,      │
-│           │                  │    assina relatórios)      │
+│  Taxi)    │     (fallback)  │   (encrypt routes,         │
+│           │                  │    sign reports)           │
 ├──────────┴──────────────────┼────────────────────────────┤
 │ config/settings.py           │ sustainability_calc.py    │
-│   (frota, solver, amb.       │   (KPIs de CO₂, meta EU  │
-│    parâmetros)                │    2030)                   │
-│ data/porto_taxi_sample.csv    │                            │
+│   (fleet, solver, env        │   (CO₂ KPIs, EU 2030      │
+│    parameters)               │    target tracking)       │
+│ data/porto_taxi_sample.csv   │                            │
 │   (30 coordenadas GPS reais) │                            │
+│   (30 real GPS coordinates) │                            │
 └─────────────────────────────────────────────────────────┘
 ```
 
-## Início Rápido
+## Início Rápido / Quick Start
 
 ```bash
-# Zero dependências — Python 3.8+ (stdlib)
+# Zero dependências / Zero dependencies — Python 3.8+ (stdlib)
 python run_mvp.py
 
-# Com D-Wave Ocean (opcional)
-pip install -r requirements-dwave.txt
+# Com D-Wave Ocean (opcional / optional)
+python -m pip install -r requirements-dwave.txt
 python run_mvp.py --dwave
 ```
 
-**Resultado esperado (builtin SA):**
+**Resultado esperado / Expected output (D-Wave neal):**
 ```
   Hubstry Quantum Logistics MVP v0.2.0
-  [IoT] Loaded 6 real delivery points from: Porto Taxi Trajectory Dataset
+  D-Wave Ocean: neal v0.6.0, dimod v0.12.21
 
   Data Source:       Porto Taxi Trajectory Dataset (real GPS)
-  Pipeline:           ~1 segundo
-
-  QUBO Solver (Built-in SA)
-    Distância total:  ~47 km
-    Veículos usados:    2
-
-  Métricas de Sustentabilidade:
-    CO₂ economizado:    ~12 kg
-    Redução:            ~44%
-    Progresso EU 2030:  ~81% (meta: 55%)
-```
-
-**Resultado esperado (D-Wave neal):**
-```
-  D-Wave Ocean:       neal vX.X.X, dimod vX.X.X
+  Pipeline:           ~0.07 seconds
 
   QUBO Solver (D-Wave neal SimulatedAnnealingSampler)
     BQM variables:    12
-    Distância total:  ~XX km
+    Total distance:   ~43 km
+    Vehicles used:     1
+
+  Sustainability Metrics / Métricas de Sustentabilidade:
+    CO₂ saved:         ~13 kg
+    Reduction:         ~49%
+    EU 2030 progress:  ~88% (target: 55%)
 ```
 
-## Repositórios Integrados
+## Repositórios Integrados / Integrated Repositories
 
-| Repositório | Papel no MVP | Status |
+| Repositório / Repository | Papel / Role | Status |
 |---|---|---|
-| **iot-protocol-hubstry** | Telemetria de frota — GPS real (Porto Taxi), velocidade, carga | Conceitos integrados + dados reais |
-| **gurudev-core** | Formulação QUBO + integração D-Wave Ocean SDK | Conceitos integrados + SDK real |
+| **iot-protocol-hubstry** | Telemetria de frota / Fleet telemetry — GPS real (Porto Taxi) | Conceitos integrados + dados reais |
+| **gurudev-core** | Formulação QUBO + D-Wave Ocean SDK | Conceitos integrados + SDK real |
 | **hubstry-security** | Criptografia PQC (Kyber768/Dilithium3) com fallback AES | Conceitos integrados |
 
-> Nota: Os três repositórios originais são projetos proprietários independentes.
-> Este MVP reimplementa seus conceitos centrais em um pipeline unificado sem dependências.
+## Tecnologias Principais / Key Technologies
 
-## Tecnologias Principais
-
-- **QUBO (Otimização Binária Quadrática Irrestrita)** — formulação via `dimod.BinaryQuadraticModel`, pronta para quantum annealers D-Wave
-- **D-Wave Ocean SDK** — `neal.SimulatedAnnealingSampler` como solver clássico do ecossistema D-Wave; upgrade para `DWaveSampler()` sem mudança de código
-- **Simulated Annealing** — solver builtin em Python puro como fallback zero-dependências
-- **Distância Haversine** — roteamento geolocalizado na região do Porto, Portugal
+- **QUBO** — formulação via `dimod.BinaryQuadraticModel`, pronta para D-Wave quantum annealers
+- **D-Wave Ocean SDK** — `neal.SimulatedAnnealingSampler`; upgrade para `DWaveSampler()` sem mudança de código
+- **Simulated Annealing** — solver builtin em Python puro (zero dependências / zero dependencies)
+- **Distância Haversine** — roteamento geolocalizado / GPS-aware routing (Porto, Portugal)
 - **Kyber768 / Dilithium3** — padrões NIST de PQC simulados via AES-256+SHA3
-- **Metas CO₂ da UE 2030** — rastreamento de redução de 55% vs linha de base de 1990
+- **EU 2030 CO₂ targets** — rastreamento de redução de 55% vs linha de base de 1990 / 55% reduction tracking
 - **Porto Taxi Dataset** — GPS real de 442 táxis, validado em papers de VRP
 
-## Configuração
+## Configuração / Configuration
 
-Edite `config/settings.py` para ajustar:
-- Tamanho da frota e capacidade dos veículos
-- Parâmetros do solver SA (varreduras, faixa de temperatura, amostras)
-- Fatores de emissão de CO₂
-- Algoritmo PQC e rotação de chaves
-- Fonte de dados: `USE_REAL_DATA = True/False`
+Edite `config/settings.py` para ajustar / Edit to adjust:
+- Tamanho da frota e capacidade / Fleet size and vehicle capacity
+- Parâmetros do solver SA / SA solver parameters (sweeps, temperature, reads)
+- Fatores de emissão de CO₂ / CO₂ emission factors
+- Algoritmo PQC e rotação de chaves / PQC algorithm and key rotation
+- Fonte de dados / Data source: `USE_REAL_DATA = True/False`
 
-## Estrutura de Arquivos
+## Estrutura de Arquivos / File Structure
 
 ```
 hubstry-logistics-quantum/
-├── run_mvp.py              # Ponto de entrada (--dwave / --builtin)
-├── README.md               # Este arquivo
+├── run_mvp.py              # Ponto de entrada / Entry point (--dwave / --builtin)
+├── README.md               # Este arquivo / This file
 ├── LICENSE                  # CC BY-NC-SA 4.0
-├── .gitignore              # Exclusões Python
-├── requirements-dwave.txt   # D-Wave Ocean SDK (opcional)
+├── .gitignore
+├── requirements-dwave.txt   # D-Wave Ocean SDK (opcional / optional)
 ├── data/
-│   ├── porto_taxi_sample.csv  # 30 coordenadas GPS reais do Porto
+│   ├── porto_taxi_sample.csv  # 30 coordenadas GPS reais / real GPS coordinates
 │   └── __init__.py
 ├── config/
-│   ├── settings.py         # Todos os parâmetros configuráveis
+│   ├── settings.py
 │   └── __init__.py
 ├── iot_layer/
-│   ├── iot_bridge.py       # Telemetria de frota (CSV real + fallback simulado)
+│   ├── iot_bridge.py       # Telemetria / Telemetry (CSV real + simulated fallback)
 │   └── __init__.py
 ├── core_layer/
 │   ├── quantum_optimizer.py    # QUBO VRP solver (D-Wave neal + builtin SA)
-│   ├── sustainability_calc.py  # KPIs de emissão de CO₂
+│   ├── sustainability_calc.py  # CO₂ emission KPIs
 │   └── __init__.py
 ├── security_layer/
-│   ├── pqc_wrapper.py      # Simulação Kyber768/Dilithium3
-│   ├── security_bridge.py  # Criptografa rotas, assina relatórios
+│   ├── pqc_wrapper.py      # Kyber768/Dilithium3 simulation
+│   ├── security_bridge.py  # Encrypt routes, sign reports
 │   └── __init__.py
 └── simulation/
-    ├── simulate_fleet.py   # Orquestrador completo do pipeline
+    ├── simulate_fleet.py   # Full pipeline orchestrator
     └── __init__.py
 ```
 
 ## Roadmap
 
 - [x] MVP: pipeline IoT → QUBO → CO₂ → PQC
-- [x] Integração com dataset GPS real (Porto Taxi Trajectory)
+- [x] Integração com dataset GPS real / Real GPS dataset integration (Porto Taxi)
 - [x] Integração D-Wave Ocean SDK (dimod BQM + neal sampler)
 - [ ] Conexão ao QPU real D-Wave Advantage via Leap
-- [ ] Dashboard Streamlit com visualização de rotas em tempo real
-- [ ] Ingestão de dados ao vivo de frota (MQTT / REST API)
-- [ ] Formulação VRP multi-depósito
-- [ ] Solver híbrido QAOA + heurísticas
-- [ ] Deploy em produção com monitoramento
+- [ ] Dashboard Streamlit com visualização de rotas / Route visualization dashboard
+- [ ] Ingestão de dados ao vivo / Live fleet data (MQTT / REST API)
+- [ ] Formulação VRP multi-depósito / Multi-depot VRP formulation
+- [ ] Solver híbrido QAOA + heurísticas / Hybrid QAOA + heuristic solver
+- [ ] Deploy em produção / Production deployment with monitoring
 
 ---
 
 **Founder & Owner:** Guilherme Gonçalves Machado
-**Licença:** CC BY-NC-SA 4.0 — Hubstry DeepTech
+**Licença / License:** CC BY-NC-SA 4.0 — Hubstry DeepTech
