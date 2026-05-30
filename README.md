@@ -191,7 +191,7 @@ python run_mvp.py --builtin    # forçar builtin SA puro / force pure builtin SA
 
 ## Benchmark: Hubstry vs Indústria / Hubstry vs Industry Standard
 
-Compare o solver QUBO da Hubstry diretamente contra o **Google OR-Tools**, o padrão
+Compara o solver QUBO da Hubstry diretamente contra o **Google OR-Tools**, o padrão
 da indústria para problemas de roteamento de veículos.
 
 Compare the Hubstry QUBO solver directly against **Google OR-Tools**, the
