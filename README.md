@@ -1,75 +1,78 @@
 # Hubstry Quantum-Ready Sustainable Logistics Platform
 
-> **Quantum-inspired** route optimization for sustainable fleet logistics.
-> Integrates IoT telemetry, QUBO-VRP solving, CO2 analytics, and post-quantum
-> cryptography in a single demonstrator for the VW / BMW use case.
+> **Otimização de rotas com inspiração quântica** para logística sustentável de frotas.
+> Integra telemetria IoT, resolução QUBO-VRP, análises de CO₂ e criptografia
+> pós-quântica em um único demonstrador para o caso de uso VW / BMW.
 
 ---
 
-## About Hubstry DeepTech
+## Sobre a Hubstry DeepTech
 
-**Hubstry DeepTech** is an original proprietary creation of
-**Guilherme Gonçalves Machado** — Technical Founder, Full Stack, sole owner.
+**Hubstry DeepTech** é uma criação original e proprietária de
+**Guilherme Gonçalves Machado** — Founder Técnico, Full Stack, único proprietário.
 
-The GitHub organization `Hubstry-DeepTech` and the account `guilherme-machado-ceo`
-are also original proprietary creations of Guilherme Gonçalves Machado.
+A organização GitHub `Hubstry-DeepTech` e a conta `guilherme-machado-ceo`
+também são criações originais e proprietárias de Guilherme Gonçalves Machado.
 
-**What is Hubstry?**
+**O que é a Hubstry?**
 
-Hubstry is a **deep tech P&D hub** dedicated to accelerating innovation with
-scientific rigor and strategic resilience. Our purpose is to mitigate risk, cost,
-and time in the development of proprietary technologies, enabling companies
-and partners to access cutting-edge solutions without bearing the full weight of
-internal R&D investment alone.
+A Hubstry é um **hub de P&D deep tech** dedicado a acelerar a inovação com
+rigor científico e resiliência estratégica. Nosso propósito é mitigar o risco,
+o custo e o tempo no desenvolvimento de tecnologias proprietárias, permitindo
+que empresas e parceiros acessem soluções de ponta sem arcar sozinhos com o
+peso do investimento interno em pesquisa e desenvolvimento.
 
-Our model creates **significant technological moats** in strategic sectors, offering
-early competitive advantage and temporary exclusivity in emerging technologies —
-before they become market standards. Additionally, Hubstry operates in anticipating
-disruption routes on **3-to-5-year horizons**, helping organizations prepare against
-unexpected disruptions and ensuring greater strategic predictability.
+Nosso modelo cria **fossos tecnológicos** significativos em setores estratégicos,
+oferecendo vantagem competitiva antecipada e exclusividade temporária em
+tecnologias emergentes — antes que elas se tornem padrão de mercado.
 
-In summary: **we are the partner that transforms technological uncertainty
-into long-term competitive advantage.**
+Além disso, a Hubstry atua na antecipação de **rotas de disrupção** em horizontes
+de 3 a 5 anos, ajudando organizações a se prepararem contra disrupções
+inesperadas e garantindo maior previsibilidade estratégica.
 
----
-
-## Important — Read Before Using
-
-### Quantum Expectations Management
-
-This is a **"Quantum-Ready"** platform — not a quantum-speedup demo.
-
-**What we ARE:**
-- A production-ready pipeline architecture designed to plug into quantum hardware (D-Wave, IBM Qiskit, Google Cirq)
-- A QUBO formulation that maps Vehicle Routing Problems to a form solvable on quantum annealers
-- A working demonstration using Simulated Annealing (D-Wave `neal`-style) as the classical solver
-
-**What we are NOT (yet):**
-- A claim of quantum advantage. The current solver is classical SA — it produces correct, optimized results, but without quantum speedup
-- A benchmark against quantum hardware. Hardware integration is the planned next step
-- A production fleet management system. This is a validated MVP demonstrating the integration architecture
-
-The value proposition is the **pipeline** — not the solver. When quantum hardware matures beyond NISQ-era limitations, this same QUBO formulation runs on real qubits with zero architecture changes.
-
-### Intellectual Property Notice
-
-This repository contains **original proprietary work** by Guilherme Gonçalves Machado
-/ Hubstry DeepTech. All source code, architectural designs, optimization formulations,
-integration patterns, and documentation are proprietary.
-
-The platform draws concepts from three proprietary Hubstry DeepTech projects:
-- **IoT Protocol Hubstry** — sensor telemetry architecture
-- **Gurudev Core** — quantum optimization framework
-- **Hubstry Security** — post-quantum cryptography layer
-
-All foundational IP belongs to Guilherme Gonçalves Machado. This repository
-represents a novel integration of these domains into a unified logistics pipeline.
-
-**License:** CC BY-NC-SA 4.0 — Non-commercial use only. See [LICENSE](LICENSE).
+Em resumo: **somos o parceiro que transforma a incerteza tecnológica em
+vantagem competitiva de longo prazo.**
 
 ---
 
-## Architecture
+## Aviso Importante — Leia Antes de Usar
+
+### Gerenciamento de Expectativas Quânticas
+
+Esta é uma plataforma **"Quantum-Ready"** — não uma demonstração de speedup quântico.
+
+**O que SOMOS:**
+- Uma arquitetura de pipeline pronta para produção, projetada para conectar a hardware quântico (D-Wave, IBM Qiskit, Google Cirq)
+- Uma formulação QUBO que mapeia Problemas de Roteamento de Veículos para uma forma resolvível em quantum annealers
+- Uma demonstração funcional usando Simulated Annealing (estilo D-Wave `neal`) como solver clássico
+
+**O que NÃO somos (ainda):**
+- Uma alegação de vantagem quântica. O solver atual é SA clássico — produz resultados corretos e otimizados, mas sem speedup quântico
+- Um benchmark contra hardware quântico. A integração com hardware é o próximo passo planejado
+- Um sistema de gestão de frotas em produção. Este é um MVP validado que demonstra a arquitetura de integração
+
+A proposta de valor é o **pipeline** — não o solver. Quando o hardware quântico amadurecer além das limitações da era NISQ, esta mesma formulação QUBO roda em qubits reais com zero alterações arquiteturais.
+
+### Aviso de Propriedade Intelectual
+
+Este repositório contém **trabalho original proprietário** de Guilherme Gonçalves
+Machado / Hubstry DeepTech. Todo o código-fonte, projetos arquiteturais,
+formulações de otimização, padrões de integração e documentação são proprietários.
+
+A plataforma integra conceitos de três projetos proprietários da Hubstry DeepTech:
+- **IoT Protocol Hubstry** — arquitetura de telemetria de sensores
+- **Gurudev Core** — framework de otimização quântica
+- **Hubstry Security** — camada de criptografia pós-quântica
+
+Todos os direitos de PI fundacional pertencem a Guilherme Gonçalves Machado.
+Este repositório representa uma integração inédita desses domínios em um pipeline
+de otimização logística unificado.
+
+**Licença:** CC BY-NC-SA 4.0 — Uso não comercial apenas. Veja [LICENSE](LICENSE).
+
+---
+
+## Arquitetura
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -79,107 +82,109 @@ represents a novel integration of these domains into a unified logistics pipelin
 │          │                  │                            │
 │ iot_     │ quantum_         │ pqc_wrapper.py             │
 │ bridge.py│ optimizer.py     │   (Kyber768 / Dilithium3   │
-│          │                  │    simulated via AES+SHA3)  │
+│          │                  │    simulado via AES+SHA3)  │
 │ GPS,      │ QUBO-VRP        │                            │
-│ speed,    │ Simulated        │ security_bridge.py         │
-│ payload   │ Annealing        │   (encrypt routes,         │
-│           │                  │    sign reports)           │
+│ velocid., │ Simulated        │ security_bridge.py         │
+│ carga     │ Annealing        │   (criptografa rotas,      │
+│           │                  │    assina relatórios)      │
 ├──────────┴──────────────────┼────────────────────────────┤
 │ config/settings.py           │ sustainability_calc.py    │
-│   (fleet, solver, env         │   (CO2 KPIs, EU 2030      │
-│    parameters)                 │    target tracking)       │
+│   (frota, solver, amb.       │   (KPIs de CO₂, meta EU  │
+│    parâmetros)                │    2030)                   │
 └─────────────────────────────────────────────────────────┘
 ```
 
-## Quick Start
+## Início Rápido
 
 ```bash
-# No external dependencies — Python 3.8+ stdlib only
+# Sem dependências externas — apenas Python 3.8+ (stdlib)
 python run_mvp.py
 ```
 
-**Expected output:**
+**Resultado esperado:**
 ```
   Hubstry Quantum Logistics MVP v0.1.0
 
-  Pipeline completed in ~1-3 seconds
-  Steps: iot_telemetry → qubo_optimize → sustainability_calc → security_sign
+  Pipeline concluído em ~1-3 segundos
+  Etapas: iot_telemetry → qubo_optimize → sustainability_calc → security_sign
 
-  QUBO Solver (Simulated Annealing):
-    Total distance:   ~69 km
-    Vehicles used:     2
+  Solver QUBO (Simulated Annealing):
+    Distância total:  ~69 km
+    Veículos usados:    2
 
-  Sustainability Metrics:
-    CO2 saved:         ~12 kg
-    Reduction:         ~35%
-    EU 2030 progress:  ~65% (target: 55%)
+  Métricas de Sustentabilidade:
+    CO₂ economizado:    ~12 kg
+    Redução:            ~35%
+    Progresso EU 2030:  ~65% (meta: 55%)
 ```
 
-## Integrated Repositories
+## Repositórios Integrados
 
-| Repository | Role in MVP | Status |
+| Repositório | Papel no MVP | Status |
 |---|---|---|
-| **iot-protocol-hubstry** | Fleet telemetry simulation — GPS, speed, payload, fuel | Concepts integrated |
-| **gurudev-core** | Quantum-inspired QUBO formulation & SA solver for VRP | Concepts integrated |
-| **hubstry-security** | Post-quantum crypto (Kyber768/Dilithium3) with AES fallback | Concepts integrated |
+| **iot-protocol-hubstry** | Simulação de telemetria — GPS, velocidade, carga, combustível | Conceitos integrados |
+| **gurudev-core** | Formulação QUBO e solver SA para VRP | Conceitos integrados |
+| **hubstry-security** | Criptografia PQC (Kyber768/Dilithium3) com fallback AES | Conceitos integrados |
 
-> Note: The three original repositories are independent proprietary projects.
-> This MVP re-implements their core concepts in a unified, zero-dependency pipeline.
+> Nota: Os três repositórios originais são projetos proprietários independentes.
+> Este MVP reimplementa seus conceitos centrais em um pipeline unificado sem dependências.
 
-## Key Technologies
+## Tecnologias Principais
 
-- **QUBO (Quadratic Unconstrained Binary Optimization)** — maps VRP to a form solvable on quantum annealers (D-Wave) and classical SA fallbacks
-- **Simulated Annealing** — classical solver from D-Wave `neal` package, reimplemented in pure Python for zero-dependency MVP
-- **Haversine distance** — GPS-aware routing in the Munich metropolitan area
-- **Kyber768 / Dilithium3** — NIST PQC standards simulated via AES-256+SHA3
-- **EU 2030 CO2 targets** — 55% reduction vs 1990 baseline tracking
+- **QUBO (Otimização Binária Quadrática Irrestrita)** — mapeia VRP para forma
+  resolvível em quantum annealers (D-Wave) e fallbacks clássicos
+- **Simulated Annealing** — solver clássico do pacote D-Wave `neal`,
+  reimplementado em Python puro para MVP sem dependências
+- **Distância Haversine** — roteamento geolocalizado na região metropolitana de Munique
+- **Kyber768 / Dilithium3** — padrões NIST de PQC simulados via AES-256+SHA3
+- **Metas CO₂ da UE 2030** — rastreamento de redução de 55% vs linha de base de 1990
 
-## Configuration
+## Configuração
 
-Edit `config/settings.py` to adjust:
-- Fleet size & vehicle capacity
-- SA solver parameters (sweeps, temperature range, reads)
-- CO2 emission factors
-- PQC algorithm selection & key rotation
+Edite `config/settings.py` para ajustar:
+- Tamanho da frota e capacidade dos veículos
+- Parâmetros do solver SA (varreduras, faixa de temperatura, amostras)
+- Fatores de emissão de CO₂
+- Algoritmo PQC e rotação de chaves
 
-## File Structure
+## Estrutura de Arquivos
 
 ```
 hubstry-logistics-quantum/
-├── run_mvp.py              # Entry point — run this
-├── README.md               # This file
+├── run_mvp.py              # Ponto de entrada — execute este
+├── README.md               # Este arquivo
 ├── LICENSE                  # CC BY-NC-SA 4.0
-├── .gitignore              # Python exclusions
+├── .gitignore              # Exclusões Python
 ├── config/
-│   ├── settings.py         # All configurable parameters
+│   ├── settings.py         # Todos os parâmetros configuráveis
 │   └── __init__.py
 ├── iot_layer/
-│   ├── iot_bridge.py       # Fleet telemetry simulation
+│   ├── iot_bridge.py       # Simulação de telemetria de frota
 │   └── __init__.py
 ├── core_layer/
-│   ├── quantum_optimizer.py    # QUBO-VRP solver (SA)
-│   ├── sustainability_calc.py  # CO2 emission KPIs
+│   ├── quantum_optimizer.py    # Solver QUBO-VRP (SA)
+│   ├── sustainability_calc.py  # KPIs de emissão de CO₂
 │   └── __init__.py
 ├── security_layer/
-│   ├── pqc_wrapper.py      # Kyber768/Dilithium3 simulation
-│   ├── security_bridge.py  # Encrypt routes, sign reports
+│   ├── pqc_wrapper.py      # Simulação Kyber768/Dilithium3
+│   ├── security_bridge.py  # Criptografa rotas, assina relatórios
 │   └── __init__.py
 └── simulation/
-    ├── simulate_fleet.py   # Full pipeline orchestrator
+    ├── simulate_fleet.py   # Orquestrador completo do pipeline
     └── __init__.py
 ```
 
 ## Roadmap
 
-- [x] MVP: IoT → QUBO → CO2 → PQC pipeline
-- [ ] D-Wave real hardware integration (QPU sampler)
-- [ ] Streamlit dashboard with live route visualization
-- [ ] Real fleet data ingestion (MQTT / REST API)
-- [ ] Multi-depot VRP formulation
-- [ ] Hybrid QAOA + heuristic solver
-- [ ] Production deployment with monitoring
+- [x] MVP: pipeline IoT → QUBO → CO₂ → PQC
+- [ ] Integração com hardware real D-Wave (QPU sampler)
+- [ ] Dashboard Streamlit com visualização de rotas em tempo real
+- [ ] Ingestão de dados reais de frota (MQTT / REST API)
+- [ ] Formulação VRP multi-depósito
+- [ ] Solver híbrido QAOA + heurísticas
+- [ ] Deploy em produção com monitoramento
 
 ---
 
 **Founder & Owner:** Guilherme Gonçalves Machado
-**License:** CC BY-NC-SA 4.0 — Hubstry DeepTech
+**Licença:** CC BY-NC-SA 4.0 — Hubstry DeepTech
