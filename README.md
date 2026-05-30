@@ -22,6 +22,24 @@
 
 ---
 
+
+
+## Cite this work
+
+> Machado, G. G. (2026). Hubstry DeepTech — Quantum-Ready Sustainable Logistics MVP (Version 0.3.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.20467804
+
+**BibTeX:**
+
+```bibtex
+@dataset{machado2026_quantum_ready_logistics,
+  author    = {Guilherme Gonçalves Machado},
+  title     = {{Hubstry DeepTech -- Quantum-Ready Sustainable Logistics MVP}},
+  year      = {2026},
+  version   = {0.3.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.20467804},
+}
+```
 ## Sobre a Hubstry DeepTech / About Hubstry DeepTech
 
 **Hubstry DeepTech** é uma criação original e proprietária de
