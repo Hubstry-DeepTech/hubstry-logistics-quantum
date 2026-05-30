@@ -231,27 +231,27 @@ python benchmark.py --no-ortools  # sem OR-Tools / skip OR-Tools
 
 ## Dashboard Interativo / Interactive Dashboard
 
-Dashboard Streamlit com visualizacao de rotas em mapa interativo, graficos comparativos
-e metricas auditaveis — evidencia visual de TRL 4->5.
+Dashboard Streamlit com visualização de rotas em mapa interativo, gráficos comparativos
+e métricas auditáveis — evidência visual de TRL 4->5.
 
 Streamlit dashboard with interactive route map, comparative charts, and auditable
 metrics — visual evidence of TRL 4->5 progression.
 
-**4 modos de visualizacao / 4 viewing modes** (isomorfos ao artigo Zenodo):
+**4 modos de visualização / 4 viewing modes** (isomorfos ao artigo Zenodo):
 
-| Modo / Mode | Publico-alvo / Audience | Conteudo / Content |
+| Modo / Mode | Público-alvo / Audience | Conteúdo / Content |
 |---|---|---|
-| Operacional | Operacoes / Operations | CO2, veiculos, conformidade EU 2030 |
-| Tecnico | Engenharia / Engineering | BQM variables, tempo de execucao, gap analysis |
-| Investidor | C-level / Investors | TRL progress, competitive moat, projecao de escala |
-| Governo | Governo / Government | Metricas auditaveis, reprodutibilidade, export |
+| Operacional | Operações / Operations | CO2, veículos, conformidade EU 2030 |
+| Tecnico | Engenharia / Engineering | BQM variables, tempo de execução, gap analysis |
+| Investidor | C-level / Investors | TRL progress, competitive moat, projeção de escala |
+| Governo | Governo / Government | Métricas auditáveis, reprodutibilidade, export |
 
-**Instalacao / Installation:**
+**Instalação / Installation:**
 ```bash
 python -m pip install -r dashboard/requirements.txt
 ```
 
-**Execucao / Run:**
+**Execução / Run:**
 ```powershell
 # Windows
 .\run_dashboard.ps1
