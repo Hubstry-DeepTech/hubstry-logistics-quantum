@@ -262,6 +262,36 @@ streamlit run dashboard/dashboard.py
 
 O dashboard abre automaticamente no navegador em `http://localhost:8501`.
 
+<p align="center">
+  <img src="docs/screenshots/dashboard-operacional.png" alt="Dashboard - Modo Operacional" width="800">
+</p>
+<p align="center">
+  <em>Modo Operacional: Impacto ambiental e conformidade EU 2030</em>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/dashboard-tecnico.png" alt="Dashboard - Modo Tecnico" width="800">
+</p>
+<p align="center">
+  <em>Modo Tecnico: Metricas de execucao e analise de gap</em>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/dashboard-investidor.png" alt="Dashboard - Modo Investidor" width="800">
+</p>
+<p align="center">
+  <em>Modo Investidor: TRL progress, moat competitivo e projeção de escala</em>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/dashboard-governo.png" alt="Dashboard - Modo Governo" width="800">
+</p>
+<p align="center">
+  <em>Modo Governo: Métricas auditáveis e reprodutibilidade cientifica</em>
+</p>
+
+
+
 ---
 
 ## Arquitetura / Architecture
