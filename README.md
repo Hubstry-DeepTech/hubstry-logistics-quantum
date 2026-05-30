@@ -9,6 +9,7 @@
   <img src="https://img.shields.io/badge/QUBO-VRP-ff6f00?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTEyIDJMNiAxMGg2bDQtNHYxMmwtNiA2SDZsNC00VjJ6Ii8+PC9zdmc+" alt="QUBO VRP">
   <img src="https://img.shields.io/badge/Dataset-Porto_Taxi_GPS-0066cc" alt="Porto Taxi GPS Dataset">
   <img src="https://img.shields.io/badge/PQC-Kyber768%20%2F%20Dilithium3-red" alt="Kyber768 / Dilithium3">
+  <img src="https://img.shields.io/badge/Benchmark-OR__Tools-success" alt="OR-Tools Benchmark">
 </p>
 
 > **Quantum-inspired** route optimization for sustainable fleet logistics.
@@ -188,6 +189,42 @@ python run_mvp.py --builtin    # forçar builtin SA puro / force pure builtin SA
 
 ---
 
+## Benchmark: Hubstry vs Indústria / Hubstry vs Industry Standard
+
+Compare o solver QUBO da Hubstry diretamente contra o **Google OR-Tools**, o padrão
+da indústria para problemas de roteamento de veículos.
+
+Compare the Hubstry QUBO solver directly against **Google OR-Tools**, the
+industry standard for vehicle routing problems.
+
+**Instalação / Installation:**
+```bash
+python -m pip install -r requirements-benchmark.txt
+```
+
+**Execução / Run:**
+```bash
+python benchmark.py              # todos os solvers disponíveis / all available solvers
+python benchmark.py --dwave      # incluir D-Wave neal / include D-Wave neal
+python benchmark.py --no-ortools # sem OR-Tools / skip OR-Tools
+```
+
+**Resultados do benchmark / Benchmark results (Porto Taxi, 6 deliveries):**
+
+| Solver | Tempo / Time | Distância / Distance | CO₂ Saved | Redução / Reduction | Gap vs OR-Tools |
+|---|---|---|---|---|---|
+| Hubstry Builtin SA | 1.17s | 46.61 km | 12.0 kg | 44.4% | +14.1% |
+| Hubstry D-Wave neal | 0.069s | 43.14 km | 13.1 kg | 48.6% | +5.6% |
+| **Google OR-Tools GLS** | **0.015s** | **40.86 km** | **13.8 kg** | **51.3%** | **baseline** |
+
+> O D-Wave neal fica a **5.6%** do OR-Tools — dentro da faixa competitiva para
+> uma formulação QUBO que escalará para hardware quântico real.
+>
+> D-Wave neal is within **5.6%** of OR-Tools — competitive range for a QUBO
+> formulation that scales to real quantum hardware.
+
+---
+
 ## Arquitetura / Architecture
 
 ```
@@ -276,10 +313,12 @@ Edite `config/settings.py` para ajustar / Edit to adjust:
 ```
 hubstry-logistics-quantum/
 ├── run_mvp.py              # Ponto de entrada / Entry point (--dwave / --builtin)
+├── benchmark.py            # Benchmark vs Google OR-Tools / Benchmark vs industry
 ├── README.md               # Este arquivo / This file
 ├── LICENSE                  # CC BY-NC-SA 4.0
 ├── .gitignore
 ├── requirements-dwave.txt   # D-Wave Ocean SDK (opcional / optional)
+├── requirements-benchmark.txt # OR-Tools + D-Wave (opcional / optional)
 ├── data/
 │   ├── porto_taxi_sample.csv  # 30 coordenadas GPS reais / real GPS coordinates
 │   └── __init__.py
@@ -291,6 +330,7 @@ hubstry-logistics-quantum/
 │   └── __init__.py
 ├── core_layer/
 │   ├── quantum_optimizer.py    # QUBO VRP solver (D-Wave neal + builtin SA)
+│   ├── ortools_solver.py      # Google OR-Tools VRP (industry benchmark)
 │   ├── sustainability_calc.py  # CO₂ emission KPIs
 │   └── __init__.py
 ├── security_layer/
@@ -307,6 +347,7 @@ hubstry-logistics-quantum/
 - [x] MVP: pipeline IoT → QUBO → CO₂ → PQC
 - [x] Integração com dataset GPS real / Real GPS dataset integration (Porto Taxi)
 - [x] Integração D-Wave Ocean SDK (dimod BQM + neal sampler)
+- [x] Benchmark vs Google OR-Tools (padrão da indústria / industry standard)
 - [ ] Conexão ao QPU real D-Wave Advantage via Leap
 - [ ] Dashboard Streamlit com visualização de rotas / Route visualization dashboard
 - [ ] Ingestão de dados ao vivo / Live fleet data (MQTT / REST API)

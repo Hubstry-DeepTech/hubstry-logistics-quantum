@@ -1,0 +1,42 @@
+[
+  {
+    "optimized_co2_kg": 14.99,
+    "baseline_co2_kg": 26.982,
+    "co2_saved_kg": 11.992,
+    "reduction_pct": 44.4,
+    "total_distance_km": 46.61,
+    "total_deliveries": 6,
+    "total_parcels": 30,
+    "co2_per_delivery_kg": 2.498,
+    "co2_per_parcel_kg": 0.4997,
+    "eu_2030_progress_pct": 80.8,
+    "eu_2030_target_pct": 55,
+    "vehicles_used": 2,
+    "fuel_consumed_liters": 5.59,
+    "solver": "Built-in SA (pure Python, zero deps)",
+    "key": "builtin",
+    "execution_time_sec": 4.0058,
+    "n_vehicles_used": 2,
+    "bqm_variables": 0
+  },
+  {
+    "optimized_co2_kg": 13.142,
+    "baseline_co2_kg": 26.982,
+    "co2_saved_kg": 13.84,
+    "reduction_pct": 51.3,
+    "total_distance_km": 40.86,
+    "total_deliveries": 6,
+    "total_parcels": 30,
+    "co2_per_delivery_kg": 2.19,
+    "co2_per_parcel_kg": 0.4381,
+    "eu_2030_progress_pct": 93.3,
+    "eu_2030_target_pct": 55,
+    "vehicles_used": 2,
+    "fuel_consumed_liters": 4.9,
+    "solver": "Google OR-Tools (Guided Local Search)",
+    "key": "ortools",
+    "execution_time_sec": 0.4624,
+    "n_vehicles_used": 2,
+    "bqm_variables": 0
+  }
+]
