@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.8+-blue?logo=python&logoColor=white" alt="Python 3.8+">
   <img src="https://img.shields.io/badge/D_Wave-Ocean_SDK-7F2DB0?logo=dwave&logoColor=white" alt="D-Wave Ocean SDK">
-  <img src="https://img.shields.io/badge/TRL-4-yellow" alt="TRL 4">
+  <img src="https://img.shields.io/badge/TRL-4_to_5-yellow" alt="TRL 4 to 5">
   <img src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey" alt="CC BY-NC-SA 4.0">
   <img src="https://img.shields.io/badge/CO₂_Reduction-48.6%25-green" alt="CO2 Reduction 48.6%">
   <img src="https://img.shields.io/badge/QUBO-VRP-ff6f00?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTEyIDJMNiAxMGg2bDQtNHYxMmwtNiA2SDZsNC00VjJ6Ii8+PC9zdmc+" alt="QUBO VRP">
@@ -226,6 +226,41 @@ python benchmark.py --no-ortools  # sem OR-Tools / skip OR-Tools
 > D-Wave neal closes **66% of the gap** vs OR-Tools (5.6% vs 14.1% from Builtin SA)
 > and is **7.5x faster** than Builtin SA. The QUBO formulation scales
 > directly to real quantum hardware with zero code changes.
+
+---
+
+## Dashboard Interativo / Interactive Dashboard
+
+Dashboard Streamlit com visualizacao de rotas em mapa interativo, graficos comparativos
+e metricas auditaveis — evidencia visual de TRL 4->5.
+
+Streamlit dashboard with interactive route map, comparative charts, and auditable
+metrics — visual evidence of TRL 4->5 progression.
+
+**4 modos de visualizacao / 4 viewing modes** (isomorfos ao artigo Zenodo):
+
+| Modo / Mode | Publico-alvo / Audience | Conteudo / Content |
+|---|---|---|
+| Operacional | Operacoes / Operations | CO2, veiculos, conformidade EU 2030 |
+| Tecnico | Engenharia / Engineering | BQM variables, tempo de execucao, gap analysis |
+| Investidor | C-level / Investors | TRL progress, competitive moat, projecao de escala |
+| Governo | Governo / Government | Metricas auditaveis, reprodutibilidade, export |
+
+**Instalacao / Installation:**
+```bash
+python -m pip install -r dashboard/requirements.txt
+```
+
+**Execucao / Run:**
+```powershell
+# Windows
+.\run_dashboard.ps1
+
+# Linux / macOS
+streamlit run dashboard/dashboard.py
+```
+
+O dashboard abre automaticamente no navegador em `http://localhost:8501`.
 
 ---
 
