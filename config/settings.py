@@ -8,31 +8,36 @@ Integrates:
   - Gurudev Core (quantum-inspired optimization)
   - Hubstry Security (post-quantum cryptography)
 
-Use case: VW / BMW fleet route optimization with carbon footprint reduction.
+Use case: Fleet route optimization with carbon footprint reduction.
+Data source: Porto Taxi Trajectory Dataset (real GPS coordinates).
 """
 
 # ---------------------------------------------------------------------------
 # General
 # ---------------------------------------------------------------------------
 APP_NAME = "Hubstry Quantum Logistics MVP"
-APP_VERSION = "0.1.0"
+APP_VERSION = "0.2.0"
 ENVIRONMENT = "development"          # development | staging | production
 
 # ---------------------------------------------------------------------------
-# IoT Layer — simulated fleet sensor parameters
+# IoT Layer — fleet sensor parameters
 # ---------------------------------------------------------------------------
 FLEET_SIZE = 8                       # number of delivery vehicles
-DEPOT_LAT = 48.1351                  # Munich HQ latitude
-DEPOT_LON = 11.5820                  # Munich HQ longitude
+DEPOT_LAT = 41.2050                  # Porto logistics hub latitude (Leixões)
+DEPOT_LON = -8.6900                  # Porto logistics hub longitude
 NUM_DELIVERIES = 6                   # delivery points per route cycle
-SPEED_KMH = 45                       # average urban delivery speed km/h
+SPEED_KMH = 40                       # average urban delivery speed km/h
 SENSOR_INTERVAL_SEC = 300             # telemetry polling interval (5 min)
 
-# Delivery zone bounding box (Munich metropolitan area)
-ZONE_LAT_MIN = 48.06
-ZONE_LAT_MAX = 48.22
-ZONE_LON_MIN = 11.42
-ZONE_LON_MAX = 11.72
+# Data source configuration
+USE_REAL_DATA = True                  # True = Porto Taxi CSV, False = simulated
+DATA_FILE = "data/porto_taxi_sample.csv"  # real GPS dataset sample
+
+# Delivery zone bounding box (Porto metropolitan area)
+ZONE_LAT_MIN = 41.10
+ZONE_LAT_MAX = 41.25
+ZONE_LON_MIN = -8.70
+ZONE_LON_MAX = -8.57
 
 # ---------------------------------------------------------------------------
 # Core / Quantum Layer — QUBO VRP solver parameters

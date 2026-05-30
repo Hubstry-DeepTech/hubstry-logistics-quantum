@@ -12,7 +12,6 @@ Coordinates the full data flow:
 Provides a single run() method for the complete MVP demonstration.
 """
 
-import json
 import time
 from typing import Dict, Any
 
@@ -52,12 +51,7 @@ class FleetSimulator:
         # ---- 1. IoT: generate delivery network ----
         points = self.iot.get_delivery_points()
         distance_matrix = self.iot.compute_distance_matrix()
-
-        # Random parcel demands for each delivery point
-        import random
-        rng = random.Random(self.seed)
-        n = len(points)
-        demands = [0] + [rng.randint(2, 8) for _ in range(n - 1)]
+        demands = self.iot.get_demands()
 
         # ---- 2. Quantum: optimize routes ----
         optimizer = QuboVRPOptimizer(
@@ -90,6 +84,7 @@ class FleetSimulator:
                 "delivery_points": len(points),
                 "depot": points[0],
                 "fleet_size": 8,
+                "data_source": self.iot.data_source,
             },
             "optimizer": solver_result,
             "sustainability": kpis,
@@ -110,8 +105,10 @@ class FleetSimulator:
         print("=" * 65)
 
         pipe = results["pipeline"]
-        print(f"\n  Pipeline completed in {pipe['total_time_sec']:.4f} seconds")
-        print(f"  Steps: {' → '.join(pipe['steps'])}")
+        iot = results["iot"]
+        print(f"\n  Data Source:       {iot['data_source']}")
+        print(f"  Pipeline:           {pipe['total_time_sec']:.4f} seconds")
+        print(f"  Steps:             {' → '.join(pipe['steps'])}")
 
         opt = results["optimizer"]
         print(f"\n  QUBO Solver (Simulated Annealing):")

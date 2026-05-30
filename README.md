@@ -56,7 +56,7 @@ A proposta de valor é o **pipeline** — não o solver. Quando o hardware quân
 ### Aviso de Propriedade Intelectual
 
 Este repositório contém **trabalho original proprietário** de Guilherme Gonçalves
-Machado / Hubstry DeepTech. Todo o código-fonte, projetos arquiteturais,
+Machado / Hubstry DeepTech. Todo o código-fonte, projetos arquiteturicos,
 formulações de otimização, padrões de integração e documentação são proprietários.
 
 A plataforma integra conceitos de três projetos proprietários da Hubstry DeepTech:
@@ -72,6 +72,28 @@ de otimização logística unificado.
 
 ---
 
+## Dataset: Porto Taxi Trajectory (GPS Real)
+
+Este projeto utiliza dados reais de GPS do **Porto Taxi Trajectory Dataset**,
+coletados de 442 táxis operando na área metropolitana do Porto, Portugal.
+
+O dataset contém trajetórias reais de veículos e é amplamente utilizado em
+pesquisa acadêmica de otimização de rotas (VRP), mineração de trajetórias e
+computação urbana. As coordenadas de 30 pontos de entrega representam locais
+reais da zona metropolitana do Porto, incluindo centro histórico, zona portuária
+de Leixões, aeroporto Francisco Sá Carneiro e bairros periféricos.
+
+**Referências acadêmicas:**
+- Zhao, K. et al., "T-Drive: Driving Directions Based on Taxi Trajectories,"
+  ACM SIGSPATIAL, 2015
+- Yuan, N.J. et al., "T-Finder: A Recommender System for Taxi Passengers
+  and Drivers," ACM SIGKDD, 2011
+- Liu, Y. et al., "Urban Computing with Taxicabs," ACM SIGSPATIAL, 2012
+
+**Source:** [Porto Taxi Trajectory Dataset](https://www.kaggle.com/datasets/cabagnar/porto-taxi-trajectory)
+
+---
+
 ## Arquitetura
 
 ```
@@ -83,14 +105,16 @@ de otimização logística unificado.
 │ iot_     │ quantum_         │ pqc_wrapper.py             │
 │ bridge.py│ optimizer.py     │   (Kyber768 / Dilithium3   │
 │          │                  │    simulado via AES+SHA3)  │
-│ GPS,      │ QUBO-VRP        │                            │
-│ velocid., │ Simulated        │ security_bridge.py         │
-│ carga     │ Annealing        │   (criptografa rotas,      │
+│ GPS real  │ QUBO-VRP        │                            │
+│ (Porto    │ Simulated        │ security_bridge.py         │
+│  Taxi)    │ Annealing        │   (criptografa rotas,      │
 │           │                  │    assina relatórios)      │
 ├──────────┴──────────────────┼────────────────────────────┤
 │ config/settings.py           │ sustainability_calc.py    │
 │   (frota, solver, amb.       │   (KPIs de CO₂, meta EU  │
 │    parâmetros)                │    2030)                   │
+│ data/porto_taxi_sample.csv    │                            │
+│   (30 coordenadas GPS reais) │                            │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -103,26 +127,27 @@ python run_mvp.py
 
 **Resultado esperado:**
 ```
-  Hubstry Quantum Logistics MVP v0.1.0
+  Hubstry Quantum Logistics MVP v0.2.0
+  [IoT] Loaded 6 real delivery points from: Porto Taxi Trajectory Dataset
 
-  Pipeline concluído em ~1-3 segundos
-  Etapas: iot_telemetry → qubo_optimize → sustainability_calc → security_sign
+  Data Source:       Porto Taxi Trajectory Dataset (real GPS)
+  Pipeline:           ~1 segundo
 
-  Solver QUBO (Simulated Annealing):
-    Distância total:  ~69 km
+  QUBO Solver (Simulated Annealing):
+    Distância total:  ~47 km
     Veículos usados:    2
 
   Métricas de Sustentabilidade:
     CO₂ economizado:    ~12 kg
-    Redução:            ~35%
-    Progresso EU 2030:  ~65% (meta: 55%)
+    Redução:            ~44%
+    Progresso EU 2030:  ~81% (meta: 55%)
 ```
 
 ## Repositórios Integrados
 
 | Repositório | Papel no MVP | Status |
 |---|---|---|
-| **iot-protocol-hubstry** | Simulação de telemetria — GPS, velocidade, carga, combustível | Conceitos integrados |
+| **iot-protocol-hubstry** | Telemetria de frota — GPS real (Porto Taxi), velocidade, carga | Conceitos integrados + dados reais |
 | **gurudev-core** | Formulação QUBO e solver SA para VRP | Conceitos integrados |
 | **hubstry-security** | Criptografia PQC (Kyber768/Dilithium3) com fallback AES | Conceitos integrados |
 
@@ -135,9 +160,10 @@ python run_mvp.py
   resolvível em quantum annealers (D-Wave) e fallbacks clássicos
 - **Simulated Annealing** — solver clássico do pacote D-Wave `neal`,
   reimplementado em Python puro para MVP sem dependências
-- **Distância Haversine** — roteamento geolocalizado na região metropolitana de Munique
+- **Distância Haversine** — roteamento geolocalizado na região do Porto, Portugal
 - **Kyber768 / Dilithium3** — padrões NIST de PQC simulados via AES-256+SHA3
 - **Metas CO₂ da UE 2030** — rastreamento de redução de 55% vs linha de base de 1990
+- **Porto Taxi Dataset** — GPS real de 442 táxis, validado em papers de VRP
 
 ## Configuração
 
@@ -146,6 +172,7 @@ Edite `config/settings.py` para ajustar:
 - Parâmetros do solver SA (varreduras, faixa de temperatura, amostras)
 - Fatores de emissão de CO₂
 - Algoritmo PQC e rotação de chaves
+- Fonte de dados: `USE_REAL_DATA = True/False`
 
 ## Estrutura de Arquivos
 
@@ -155,11 +182,14 @@ hubstry-logistics-quantum/
 ├── README.md               # Este arquivo
 ├── LICENSE                  # CC BY-NC-SA 4.0
 ├── .gitignore              # Exclusões Python
+├── data/
+│   ├── porto_taxi_sample.csv  # 30 coordenadas GPS reais do Porto
+│   └── __init__.py
 ├── config/
 │   ├── settings.py         # Todos os parâmetros configuráveis
 │   └── __init__.py
 ├── iot_layer/
-│   ├── iot_bridge.py       # Simulação de telemetria de frota
+│   ├── iot_bridge.py       # Telemetria de frota (CSV real + fallback simulado)
 │   └── __init__.py
 ├── core_layer/
 │   ├── quantum_optimizer.py    # Solver QUBO-VRP (SA)
@@ -177,9 +207,10 @@ hubstry-logistics-quantum/
 ## Roadmap
 
 - [x] MVP: pipeline IoT → QUBO → CO₂ → PQC
+- [x] Integração com dataset GPS real (Porto Taxi Trajectory)
 - [ ] Integração com hardware real D-Wave (QPU sampler)
 - [ ] Dashboard Streamlit com visualização de rotas em tempo real
-- [ ] Ingestão de dados reais de frota (MQTT / REST API)
+- [ ] Ingestão de dados ao vivo de frota (MQTT / REST API)
 - [ ] Formulação VRP multi-depósito
 - [ ] Solver híbrido QAOA + heurísticas
 - [ ] Deploy em produção com monitoramento

@@ -1,17 +1,23 @@
 """
 Hubstry Quantum-Ready Sustainable Logistics Platform
 ====================================================
-IoT Bridge — Simulates fleet telemetry data from delivery vehicles.
+IoT Bridge — Fleet telemetry data from delivery vehicles.
 
 Integrates with: IoT Protocol Hubstry architecture.
-Provides realistic GPS positions, speed, payload, and fuel readings
-for the Munich metropolitan delivery network.
+Supports two data modes:
+  - Real GPS data from Porto Taxi Trajectory Dataset (CSV)
+  - Simulated data with random GPS coordinates (fallback)
+
+The real dataset provides validated GPS coordinates from 442 taxis
+operating in the Porto metropolitan area, Portugal.
 """
 
+import csv
 import math
+import os
 import random
 import time
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 from config.settings import (
     FLEET_SIZE,
@@ -25,6 +31,8 @@ from config.settings import (
     ZONE_LON_MIN,
     ZONE_LON_MAX,
     VEHICLE_CAPACITY,
+    USE_REAL_DATA,
+    DATA_FILE,
 )
 
 
@@ -74,9 +82,7 @@ class TelemetryReading:
 
     def to_dict(self) -> Dict[str, Any]:
         """Serialize to a plain dictionary."""
-        return {
-            k: getattr(self, k) for k in self.__slots__
-        }
+        return {k: getattr(self, k) for k in self.__slots__}
 
     def __repr__(self) -> str:
         return (f"Telemetry(vehicle={self.vehicle_id}, "
@@ -86,29 +92,90 @@ class TelemetryReading:
 
 class IoTBridge:
     """
-    Simulates the IoT Protocol Hubstry telemetry stream.
+    Fleet telemetry bridge supporting real and simulated data modes.
 
-    Generates realistic delivery-vehicle data for the Munich area,
-    including GPS jitter, payload decay, and fuel consumption modelling.
+    Real mode: loads GPS coordinates from Porto Taxi Trajectory Dataset CSV.
+    Simulated mode: generates random coordinates within the delivery zone.
     """
 
-    def __init__(self, seed: int = 42):
+    def __init__(self, seed: int = 42, use_real_data: bool = None):
         self._rng = random.Random(seed)
-        self._delivery_points: List[Dict[str, float]] = []
-        self._generate_delivery_network()
+        self._use_real = use_real_data if use_real_data is not None else USE_REAL_DATA
+        self._csv_points: List[Dict[str, Any]] = []
+        self._csv_demands: List[int] = []
+        self._data_source: str = "unknown"
+        self._load_data()
 
     # ------------------------------------------------------------------
     # Internal helpers
     # ------------------------------------------------------------------
 
-    def _generate_delivery_network(self) -> None:
-        """Pre-generate random delivery waypoints within the zone."""
-        self._delivery_points = [
+    def _load_data(self) -> None:
+        """Load delivery points from the configured data source."""
+        if self._use_real:
+            loaded = self._load_csv()
+            if loaded:
+                return
+            # Fallback to simulated if CSV not found
+            print("  [IoT] CSV not found, falling back to simulated data")
+
+        # Simulated mode
+        self._data_source = "simulated"
+        self._generate_simulated_network()
+
+    def _load_csv(self) -> bool:
+        """
+        Load real delivery points from Porto Taxi sample CSV.
+
+        Returns:
+            True if loaded successfully, False otherwise.
+        """
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        csv_path = os.path.join(base_dir, DATA_FILE)
+
+        if not os.path.isfile(csv_path):
+            return False
+
+        try:
+            with open(csv_path, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                rows = list(reader)
+
+            self._csv_points = [
+                {"lat": float(row["latitude"]), "lon": float(row["longitude"])}
+                for row in rows
+            ]
+            self._csv_demands = [int(row["parcels"]) for row in rows]
+
+            # Use seed to select a reproducible subset
+            indices = list(range(len(self._csv_points)))
+            self._rng.shuffle(indices)
+            selected = indices[:NUM_DELIVERIES]
+            selected.sort()
+
+            self._csv_points = [self._csv_points[i] for i in selected]
+            self._csv_demands = [self._csv_demands[i] for i in selected]
+
+            self._data_source = "Porto Taxi Trajectory Dataset (real GPS)"
+            print(f"  [IoT] Loaded {len(self._csv_points)} real delivery "
+                  f"points from: {self._data_source}")
+            return True
+
+        except (ValueError, KeyError, IOError) as e:
+            print(f"  [IoT] CSV load error: {e}")
+            return False
+
+    def _generate_simulated_network(self) -> None:
+        """Generate random delivery waypoints within the zone."""
+        self._csv_points = [
             {
                 "lat": self._rng.uniform(ZONE_LAT_MIN, ZONE_LAT_MAX),
                 "lon": self._rng.uniform(ZONE_LON_MIN, ZONE_LON_MAX),
             }
             for _ in range(NUM_DELIVERIES)
+        ]
+        self._csv_demands = [
+            self._rng.randint(2, 8) for _ in range(NUM_DELIVERIES)
         ]
 
     def _jitter(self, value: float, magnitude: float = 0.0005) -> float:
@@ -119,15 +186,28 @@ class IoTBridge:
     # Public API
     # ------------------------------------------------------------------
 
+    @property
+    def data_source(self) -> str:
+        """Return a description of the current data source."""
+        return self._data_source
+
     def get_delivery_points(self) -> List[Dict[str, float]]:
         """
         Return the list of delivery waypoints.
 
         Each point is a dict with 'lat' and 'lon' keys.
-        Index 0 is the depot (Munich HQ).
+        Index 0 is the depot.
         """
         depot = {"lat": DEPOT_LAT, "lon": DEPOT_LON}
-        return [depot] + self._delivery_points
+        return [depot] + self._csv_points
+
+    def get_demands(self) -> List[int]:
+        """
+        Return parcel demand per delivery point.
+
+        Index 0 is depot (demand 0), followed by each delivery point.
+        """
+        return [0] + self._csv_demands
 
     def get_fleet_snapshot(self) -> List[TelemetryReading]:
         """
