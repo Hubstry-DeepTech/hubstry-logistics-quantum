@@ -44,11 +44,12 @@ Esta é uma plataforma **"Quantum-Ready"** — não uma demonstração de speedu
 **O que SOMOS:**
 - Uma arquitetura de pipeline pronta para produção, projetada para conectar a hardware quântico (D-Wave, IBM Qiskit, Google Cirq)
 - Uma formulação QUBO que mapeia Problemas de Roteamento de Veículos para uma forma resolvível em quantum annealers
-- Uma demonstração funcional usando Simulated Annealing (estilo D-Wave `neal`) como solver clássico
+- Uma demonstração funcional com integração real ao **D-Wave Ocean SDK** (`dimod` + `neal`)
+- Quando conectado ao D-Wave Leap, o mesmo QUBO roda no **QPU real** com zero mudanças de código
 
 **O que NÃO somos (ainda):**
-- Uma alegação de vantagem quântica. O solver atual é SA clássico — produz resultados corretos e otimizados, mas sem speedup quântico
-- Um benchmark contra hardware quântico. A integração com hardware é o próximo passo planejado
+- Uma alegação de vantagem quântica. O solver `neal` é SA clássico do ecossistema D-Wave
+- Um benchmark contra hardware quântico. A integração com QPU real é o próximo passo planejado
 - Um sistema de gestão de frotas em produção. Este é um MVP validado que demonstra a arquitetura de integração
 
 A proposta de valor é o **pipeline** — não o solver. Quando o hardware quântico amadurecer além das limitações da era NISQ, esta mesma formulação QUBO roda em qubits reais com zero alterações arquiteturais.
@@ -94,6 +95,42 @@ de Leixões, aeroporto Francisco Sá Carneiro e bairros periféricos.
 
 ---
 
+## D-Wave Leap Integration
+
+Este projeto integra nativamente com o **D-Wave Ocean SDK**, o mesmo toolkit
+oficial usado para programar o processador quântico D-Wave Advantage.
+
+**Como funciona:**
+1. A formulação VRP é convertida em um `dimod.BinaryQuadraticModel` (BQM) real
+2. O BQM é amostrado usando `neal.SimulatedAnnealingSampler` (simulador clássico do ecossistema D-Wave)
+3. Quando conectado ao D-Wave Leap, basta trocar o sampler para `DWaveSampler()` —
+   a mesma formulação QUBO roda diretamente no QPU real
+
+**Instalação do D-Wave (opcional):**
+```bash
+pip install -r requirements-dwave.txt
+```
+
+**Modos de execução:**
+```bash
+# Auto-detect: usa D-Wave se instalado, senão usa builtin SA
+python run_mvp.py
+
+# Forçar D-Wave neal (requer dwave-neal instalado)
+python run_mvp.py --dwave
+
+# Forçar builtin SA puro (zero dependências)
+python run_mvp.py --builtin
+```
+
+**Para conectar ao QPU real do D-Wave Leap:**
+1. Crie conta gratuita em [D-Wave Leap](https://cloud.dwavesys.com/leap/)
+2. Obtenha o API token
+3. O BQM gerado por `quantum_optimizer.py` pode ser enviado diretamente ao QPU
+   via `dwave.system.DWaveSampler()`
+
+---
+
 ## Arquitetura
 
 ```
@@ -104,10 +141,10 @@ de Leixões, aeroporto Francisco Sá Carneiro e bairros periféricos.
 │          │                  │                            │
 │ iot_     │ quantum_         │ pqc_wrapper.py             │
 │ bridge.py│ optimizer.py     │   (Kyber768 / Dilithium3   │
-│          │                  │    simulado via AES+SHA3)  │
-│ GPS real  │ QUBO-VRP        │                            │
-│ (Porto    │ Simulated        │ security_bridge.py         │
-│  Taxi)    │ Annealing        │   (criptografa rotas,      │
+│          │   ├─ BQM (dimod) │    simulado via AES+SHA3)  │
+│ GPS real  │   ├─ neal (SA)  │                            │
+│ (Porto    │   └─ builtin SA  │ security_bridge.py         │
+│  Taxi)    │     (fallback)  │   (criptografa rotas,      │
 │           │                  │    assina relatórios)      │
 ├──────────┴──────────────────┼────────────────────────────┤
 │ config/settings.py           │ sustainability_calc.py    │
@@ -121,11 +158,15 @@ de Leixões, aeroporto Francisco Sá Carneiro e bairros periféricos.
 ## Início Rápido
 
 ```bash
-# Sem dependências externas — apenas Python 3.8+ (stdlib)
+# Zero dependências — Python 3.8+ (stdlib)
 python run_mvp.py
+
+# Com D-Wave Ocean (opcional)
+pip install -r requirements-dwave.txt
+python run_mvp.py --dwave
 ```
 
-**Resultado esperado:**
+**Resultado esperado (builtin SA):**
 ```
   Hubstry Quantum Logistics MVP v0.2.0
   [IoT] Loaded 6 real delivery points from: Porto Taxi Trajectory Dataset
@@ -133,7 +174,7 @@ python run_mvp.py
   Data Source:       Porto Taxi Trajectory Dataset (real GPS)
   Pipeline:           ~1 segundo
 
-  QUBO Solver (Simulated Annealing):
+  QUBO Solver (Built-in SA)
     Distância total:  ~47 km
     Veículos usados:    2
 
@@ -143,12 +184,21 @@ python run_mvp.py
     Progresso EU 2030:  ~81% (meta: 55%)
 ```
 
+**Resultado esperado (D-Wave neal):**
+```
+  D-Wave Ocean:       neal vX.X.X, dimod vX.X.X
+
+  QUBO Solver (D-Wave neal SimulatedAnnealingSampler)
+    BQM variables:    12
+    Distância total:  ~XX km
+```
+
 ## Repositórios Integrados
 
 | Repositório | Papel no MVP | Status |
 |---|---|---|
 | **iot-protocol-hubstry** | Telemetria de frota — GPS real (Porto Taxi), velocidade, carga | Conceitos integrados + dados reais |
-| **gurudev-core** | Formulação QUBO e solver SA para VRP | Conceitos integrados |
+| **gurudev-core** | Formulação QUBO + integração D-Wave Ocean SDK | Conceitos integrados + SDK real |
 | **hubstry-security** | Criptografia PQC (Kyber768/Dilithium3) com fallback AES | Conceitos integrados |
 
 > Nota: Os três repositórios originais são projetos proprietários independentes.
@@ -156,10 +206,9 @@ python run_mvp.py
 
 ## Tecnologias Principais
 
-- **QUBO (Otimização Binária Quadrática Irrestrita)** — mapeia VRP para forma
-  resolvível em quantum annealers (D-Wave) e fallbacks clássicos
-- **Simulated Annealing** — solver clássico do pacote D-Wave `neal`,
-  reimplementado em Python puro para MVP sem dependências
+- **QUBO (Otimização Binária Quadrática Irrestrita)** — formulação via `dimod.BinaryQuadraticModel`, pronta para quantum annealers D-Wave
+- **D-Wave Ocean SDK** — `neal.SimulatedAnnealingSampler` como solver clássico do ecossistema D-Wave; upgrade para `DWaveSampler()` sem mudança de código
+- **Simulated Annealing** — solver builtin em Python puro como fallback zero-dependências
 - **Distância Haversine** — roteamento geolocalizado na região do Porto, Portugal
 - **Kyber768 / Dilithium3** — padrões NIST de PQC simulados via AES-256+SHA3
 - **Metas CO₂ da UE 2030** — rastreamento de redução de 55% vs linha de base de 1990
@@ -178,10 +227,11 @@ Edite `config/settings.py` para ajustar:
 
 ```
 hubstry-logistics-quantum/
-├── run_mvp.py              # Ponto de entrada — execute este
+├── run_mvp.py              # Ponto de entrada (--dwave / --builtin)
 ├── README.md               # Este arquivo
 ├── LICENSE                  # CC BY-NC-SA 4.0
 ├── .gitignore              # Exclusões Python
+├── requirements-dwave.txt   # D-Wave Ocean SDK (opcional)
 ├── data/
 │   ├── porto_taxi_sample.csv  # 30 coordenadas GPS reais do Porto
 │   └── __init__.py
@@ -192,7 +242,7 @@ hubstry-logistics-quantum/
 │   ├── iot_bridge.py       # Telemetria de frota (CSV real + fallback simulado)
 │   └── __init__.py
 ├── core_layer/
-│   ├── quantum_optimizer.py    # Solver QUBO-VRP (SA)
+│   ├── quantum_optimizer.py    # QUBO VRP solver (D-Wave neal + builtin SA)
 │   ├── sustainability_calc.py  # KPIs de emissão de CO₂
 │   └── __init__.py
 ├── security_layer/
@@ -208,7 +258,8 @@ hubstry-logistics-quantum/
 
 - [x] MVP: pipeline IoT → QUBO → CO₂ → PQC
 - [x] Integração com dataset GPS real (Porto Taxi Trajectory)
-- [ ] Integração com hardware real D-Wave (QPU sampler)
+- [x] Integração D-Wave Ocean SDK (dimod BQM + neal sampler)
+- [ ] Conexão ao QPU real D-Wave Advantage via Leap
 - [ ] Dashboard Streamlit com visualização de rotas em tempo real
 - [ ] Ingestão de dados ao vivo de frota (MQTT / REST API)
 - [ ] Formulação VRP multi-depósito

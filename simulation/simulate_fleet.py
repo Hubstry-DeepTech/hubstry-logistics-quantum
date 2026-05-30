@@ -36,12 +36,13 @@ class FleetSimulator:
         self.iot = IoTBridge(seed=seed)
         self.security = SecurityBridge(seed=seed)
 
-    def run(self, num_reads: int = 100) -> Dict[str, Any]:
+    def run(self, num_reads: int = 100, use_dwave: bool = None) -> Dict[str, Any]:
         """
         Execute the full pipeline and return all results.
 
         Args:
             num_reads: Number of SA samples for the QUBO solver.
+            use_dwave: Force D-Wave (True), force builtin (False), or auto (None).
 
         Returns:
             Comprehensive results dictionary.
@@ -59,7 +60,7 @@ class FleetSimulator:
             demands=demands,
             seed=self.seed,
         )
-        solver_result = optimizer.solve(num_reads=num_reads)
+        solver_result = optimizer.solve(num_reads=num_reads, use_dwave=use_dwave)
 
         # ---- 3. Sustainability: compute CO2 KPIs ----
         calc = SustainabilityCalculator(distance_matrix, demands)
@@ -111,7 +112,9 @@ class FleetSimulator:
         print(f"  Steps:             {' → '.join(pipe['steps'])}")
 
         opt = results["optimizer"]
-        print(f"\n  QUBO Solver (Simulated Annealing):")
+        print(f"\n  QUBO Solver ({opt.get('solver', 'SA')})")
+        if opt.get("bqm_variables", 0) > 0:
+            print(f"    BQM variables:    {opt['bqm_variables']}")
         print(f"    Reads:            {opt['n_reads']}")
         print(f"    Best energy:      {opt['best_energy']}")
         print(f"    Vehicles used:    {opt['n_vehicles_used']}")

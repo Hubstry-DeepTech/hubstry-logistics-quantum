@@ -9,17 +9,14 @@ Integrates three GitHub repositories:
   2. Gurudev Core           — quantum-inspired QUBO optimization
   3. Hubstry Security       — post-quantum cryptography
 
-Demonstrates:
-  - IoT sensor data generation (Munich delivery network)
-  - QUBO-VRP route optimization via Simulated Annealing
-  - CO2 emission reduction vs unoptimized baseline
-  - Post-quantum encryption & digital signatures
-
 Usage:
-    python run_mvp.py
+    python run_mvp.py                  # auto-detect solver
+    python run_mvp.py --builtin        # force pure Python SA
+    python run_mvp.py --dwave          # force D-Wave neal (requires dwave-neal)
 
 Requirements:
-    Python 3.8+ (no external dependencies — uses only stdlib)
+    Python 3.8+ stdlib (zero dependencies for builtin solver)
+    Optional: pip install -r requirements-dwave.txt
 """
 
 import sys
@@ -33,15 +30,49 @@ from simulation.simulate_fleet import FleetSimulator
 from config.settings import APP_NAME, APP_VERSION
 
 
+def parse_args():
+    """Parse command-line arguments."""
+    args = set(sys.argv[1:])
+    return {
+        "use_dwave": "--dwave" in args,
+        "force_builtin": "--builtin" in args,
+    }
+
+
 def main():
     """Run the complete Hubstry Quantum Logistics MVP pipeline."""
+    args = parse_args()
+
+    use_dwave = None
+    if args["use_dwave"]:
+        use_dwave = True
+    elif args["force_builtin"]:
+        use_dwave = False
+
     print(f"\n  {APP_NAME} v{APP_VERSION}")
     print(f"  Python {sys.version.split()[0]}")
+
+    # Check D-Wave availability
+    try:
+        import dimod
+        import neal
+        print(f"  D-Wave Ocean:       neal v{neal.__version__}, dimod v{dimod.__version__}")
+        if use_dwave is None:
+            print("  Solver:             D-Wave neal (auto-detected)")
+    except ImportError:
+        print("  D-Wave Ocean:       not installed (using builtin SA)")
+        if use_dwave is True:
+            print("  [WARNING] --dwave requested but dwave-neal not found")
+            use_dwave = None
+
+    if use_dwave is False:
+        print("  Solver:             Built-in SA (forced via --builtin)")
+
     print()
 
     # Create simulator and run full pipeline
     sim = FleetSimulator(seed=42)
-    results = sim.run(num_reads=100)
+    results = sim.run(num_reads=100, use_dwave=use_dwave)
 
     # Print formatted report
     sim.print_report(results)
