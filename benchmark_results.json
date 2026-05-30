@@ -15,7 +15,7 @@
     "fuel_consumed_liters": 5.59,
     "solver": "Built-in SA (pure Python, zero deps)",
     "key": "builtin",
-    "execution_time_sec": 3.245,
+    "execution_time_sec": 4.2658,
     "n_vehicles_used": 2,
     "bqm_variables": 0
   },
@@ -35,7 +35,7 @@
     "fuel_consumed_liters": 4.9,
     "solver": "Google OR-Tools (Guided Local Search)",
     "key": "ortools",
-    "execution_time_sec": 0.0343,
+    "execution_time_sec": 1.5147,
     "n_vehicles_used": 2,
     "bqm_variables": 0
   }
