@@ -1,5 +1,16 @@
 # Hubstry Quantum-Ready Sustainable Logistics Platform
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-blue?logo=python&logoColor=white" alt="Python 3.8+">
+  <img src="https://img.shields.io/badge/D_Wave-Ocean_SDK-7F2DB0?logo=dwave&logoColor=white" alt="D-Wave Ocean SDK">
+  <img src="https://img.shields.io/badge/TRL-4-yellow" alt="TRL 4">
+  <img src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey" alt="CC BY-NC-SA 4.0">
+  <img src="https://img.shields.io/badge/CO₂_Reduction-48.6%25-green" alt="CO2 Reduction 48.6%">
+  <img src="https://img.shields.io/badge/QUBO-VRP-ff6f00?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTEyIDJMNiAxMGg2bDQtNHYxMmwtNiA2SDZsNC00VjJ6Ii8+PC9zdmc+" alt="QUBO VRP">
+  <img src="https://img.shields.io/badge/Dataset-Porto_Taxi_GPS-0066cc" alt="Porto Taxi GPS Dataset">
+  <img src="https://img.shields.io/badge/PQC-Kyber768%20%2F%20Dilithium3-red" alt="Kyber768 / Dilithium3">
+</p>
+
 > **Quantum-inspired** route optimization for sustainable fleet logistics.
 > Integra telemetria IoT, resolução QUBO-VRP, análises de CO₂ e criptografia
 > pós-quântica em um único demonstrador para o caso de uso VW / BMW.
