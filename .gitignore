@@ -1,4 +1,35 @@
-﻿__pycache__/
+# Hubstry Quantum-Ready Sustainable Logistics Platform
+# Python
+__pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Generated outputs
 mvp_results.json
-gerar.py
+hubstry_mvp.log
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Environment variables
+.env
+.env.local
