@@ -242,7 +242,7 @@ metrics — visual evidence of TRL 4->5 progression.
 | Modo / Mode | Público-alvo / Audience | Conteúdo / Content |
 |---|---|---|
 | Operacional | Operações / Operations | CO2, veículos, conformidade EU 2030 |
-| Tecnico | Engenharia / Engineering | BQM variables, tempo de execução, gap analysis |
+| Técnico | Engenharia / Engineering | BQM variables, tempo de execução, gap analysis |
 | Investidor | C-level / Investors | TRL progress, competitive moat, projeção de escala |
 | Governo | Governo / Government | Métricas auditáveis, reprodutibilidade, export |
 
