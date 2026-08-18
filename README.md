@@ -1,6 +1,7 @@
 # Hubstry Quantum-Ready Sustainable Logistics Platform
 
 <p align="center">
+  <a href="https://github.com/Hubstry-DeepTech/hubstry-logistics-quantum/actions/workflows/ci.yml"><img src="https://github.com/Hubstry-DeepTech/hubstry-logistics-quantum/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/Python-3.8+-blue?logo=python&logoColor=white" alt="Python 3.8+">
   <img src="https://img.shields.io/badge/D_Wave-Ocean_SDK-7F2DB0?logo=dwave&logoColor=white" alt="D-Wave Ocean SDK">
   <img src="https://img.shields.io/badge/TRL-4_to_5-yellow" alt="TRL 4 to 5">
@@ -8,7 +9,7 @@
   <img src="https://img.shields.io/badge/CO₂_Reduction-48.6%25-green" alt="CO2 Reduction 48.6%">
   <img src="https://img.shields.io/badge/QUBO-VRP-ff6f00?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTEyIDJMNiAxMGg2bDQtNHYxMmwtNiA2SDZsNC00VjJ6Ii8+PC9zdmc+" alt="QUBO VRP">
   <img src="https://img.shields.io/badge/Dataset-Porto_Taxi_GPS-0066cc" alt="Porto Taxi GPS Dataset">
-  <img src="https://img.shields.io/badge/PQC-Kyber768%20%2F%20Dilithium3-red" alt="Kyber768 / Dilithium3">
+  <img src="https://img.shields.io/badge/PQC-simula%C3%A7%C3%A3o%20did%C3%A1tica-lightgrey" alt="PQC — simulacao didatica">
   <img src="https://img.shields.io/badge/Benchmark-OR__Tools-success" alt="OR-Tools Benchmark">
 </p>
 
