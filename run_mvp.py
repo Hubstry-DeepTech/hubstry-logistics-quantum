@@ -23,6 +23,19 @@ import sys
 import os
 import json
 
+# Windows/cp1252: quando stdout e um pipe ou redirecionamento, o Python usa a
+# codificacao local (cp1252 no Brasil), que nao cobre os caracteres do relatorio
+# (setas, subscritos). Forcamos UTF-8 para o pipeline funcionar em qualquer
+# console, redirecionamento, CI ou container.
+# On Windows, piped/redirected stdout falls back to the locale encoding, which
+# cannot encode the report characters. Force UTF-8 for portability.
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        try:
+            _stream.reconfigure(encoding="utf-8", errors="replace")
+        except (ValueError, OSError):
+            pass
+
 # Ensure project root is on the Python path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
