@@ -16,7 +16,7 @@ Data source: Porto Taxi Trajectory Dataset (real GPS coordinates).
 # General
 # ---------------------------------------------------------------------------
 APP_NAME = "Hubstry Quantum Logistics MVP"
-APP_VERSION = "0.2.0"
+APP_VERSION = "0.3.0"
 ENVIRONMENT = "development"          # development | staging | production
 
 # ---------------------------------------------------------------------------
@@ -63,7 +63,7 @@ EU_BASELINE_CO2_PER_TKM = 0.124     # kg CO2 per tonne-km (EU 1990 avg)
 # ---------------------------------------------------------------------------
 PQC_ALGORITHM_KEM = "Kyber768"       # Key Encapsulation Mechanism
 PQC_ALGORITHM_SIG = "Dilithium3"     # Digital Signature
-PQC_FALLBACK_CIPHER = "AES-256-GCM" # classical fallback cipher
+PQC_FALLBACK_CIPHER = "SHA3-256 keystream (XOR, nao-AEAD / non-AEAD)" # didactic fallback
 PQC_FALLBACK_HASH = "SHA3-256"       # classical fallback hash
 HSM_SIMULATED = True                 # use software-based HSM simulation
 KEY_ROTATION_HOURS = 24              # automatic key rotation interval

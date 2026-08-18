@@ -7,7 +7,7 @@ Integrates with: Hubstry Security framework.
 
 Simulates NIST-approved post-quantum algorithms (Kyber768 for key
 encapsulation, Dilithium3 for digital signatures) with a classical
-AES-256-GCM + SHA3-256 fallback for current hardware.
+a didactic SHA3-256 keystream fallback (XOR, non-AEAD) for current hardware.
 
 In production, swap the fallback functions with liboqs / pqclean bindings.
 """
@@ -93,7 +93,7 @@ class PQCWrapper:
 
     def encrypt(self, plaintext: str) -> Dict:
         """
-        Encrypt a plaintext string using the PQC KEM + AES-256-GCM fallback.
+        Encrypt a plaintext string using the PQC KEM + SHA3-256 keystream fallback (XOR, non-AEAD).
 
         Args:
             plaintext: Message to encrypt.
@@ -103,7 +103,7 @@ class PQCWrapper:
         """
         nonce = os.urandom(12)
 
-        # Derive AES key from shared secret + public key
+        # Derive keystream seed from shared secret + public key
         shared_secret = hashlib.sha3_256(
             self._public_key + nonce + struct.pack(">I", self._key_id)
         ).digest()
@@ -173,6 +173,15 @@ class PQCWrapper:
 
         Returns:
             Dict with signature hex and metadata.
+
+        NOTA DE SIMULACAO / SIMULATION NOTE:
+        Simulacao didatica. Nao e assinatura digital assimetrica: a chave
+        publica deriva da privada (sha3_256(priv + "-pub")), logo nao ha par
+        de chaves real. Nao usar para fins de seguranca.
+
+        Didactic simulation. Not an asymmetric digital signature: the public
+        key is derived from the private one, so there is no real key pair.
+        Do not use for security purposes.
         """
         msg_bytes = message.encode("utf-8")
         sig_input = self._private_key + msg_bytes
@@ -194,12 +203,25 @@ class PQCWrapper:
 
         Returns:
             True if signature is valid.
+
+        NOTA DE SIMULACAO / SIMULATION NOTE:
+        Esta verificacao recomputa o mesmo valor que sign() produz, usando a
+        chave privada. Portanto trata-se de um MAC com chave, NAO de uma
+        assinatura digital assimetrica: nao e possivel verificar sem o
+        segredo. Em producao, substituir por Dilithium3 via liboqs/PQClean.
+
+        This check recomputes the same value sign() produces, using the
+        private key. It is therefore a keyed MAC, NOT an asymmetric digital
+        signature: verification without the secret is not possible. In
+        production, replace with Dilithium3 via liboqs/PQClean.
         """
-        sig_bytes = bytes.fromhex(signature_hex)
+        try:
+            sig_bytes = bytes.fromhex(signature_hex)
+        except ValueError:
+            return False
         msg_bytes = message.encode("utf-8")
-        expected = hashlib.sha3_256(self._public_key + msg_bytes).digest()
-        actual = hashlib.sha3_256(sig_bytes[:32]).digest()
-        return hmac.compare_digest(expected, actual)
+        expected = hashlib.sha3_512(self._private_key + msg_bytes).digest()
+        return hmac.compare_digest(expected, sig_bytes)
 
     # ------------------------------------------------------------------
     # Status

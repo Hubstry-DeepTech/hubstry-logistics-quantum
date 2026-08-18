@@ -111,9 +111,36 @@ This is a **"Quantum-Ready"** platform — not a quantum-speedup demo.
 - Um benchmark contra hardware quântico — a integração com QPU real é o próximo passo / A benchmark against quantum hardware — QPU integration is the planned next step
 - Um sistema de gestão de frotas em produção — este é um MVP validado / A production fleet management system — this is a validated MVP
 
-A proposta de valor é o **pipeline** — não o solver. Quando o hardware quântico amadurecer, esta formulação QUBO roda em qubits reais com zero alterações arquiteturais.
+A proposta de valor é o **pipeline** — não o solver. Quando o hardware quântico amadurecer, o desenho prevê rodar esta formulação QUBO em qubits reais sem alterações arquiteturais — integração ainda não exercitada.
 
 The value proposition is the **pipeline** — not the solver. When quantum hardware matures, this same QUBO formulation runs on real qubits with zero architectural changes.
+
+### Aviso de Segurança / Security Notice
+
+A camada de criptografia pós-quântica deste repositório é uma **simulação
+arquitetural** — existe para demonstrar o ponto de integração, não para
+oferecer segurança.
+
+The post-quantum cryptography layer in this repository is an **architectural
+simulation** — it exists to demonstrate the integration point, not to provide
+security.
+
+**O que é / What it is:**
+
+- `Kyber768` e `Dilithium3` são **nomes de placeholder** em configuração; nenhum dos dois algoritmos está implementado / are **placeholder names** in configuration; neither algorithm is implemented
+- A cifra é um keystream derivado de SHA3-256 aplicado por XOR, **sem autenticação (não-AEAD)** / The cipher is a SHA3-256-derived keystream applied via XOR, **without authentication (non-AEAD)**
+- `sign()`/`verify()` constituem um **MAC com chave**, não uma assinatura assimétrica: a chave pública deriva da privada, logo não há par de chaves / constitute a **keyed MAC**, not an asymmetric signature: the public key derives from the private one, so there is no key pair
+
+**Nenhuma garantia criptográfica é oferecida.** Não use esta camada para
+proteger dados reais. Em produção, substituir por `liboqs` / PQClean com
+implementações auditadas dos padrões NIST.
+
+**No cryptographic guarantee is offered.** Do not use this layer to protect
+real data. In production, replace with `liboqs` / PQClean using audited
+implementations of the NIST standards.
+
+---
+
 
 ### Propriedade Intelectual / Intellectual Property
 
@@ -179,12 +206,12 @@ toolkit for programming the D-Wave Advantage quantum processor.
 1. A formulação VRP é convertida em um `dimod.BinaryQuadraticModel` (BQM) real
 2. O BQM é amostrado usando `neal.SimulatedAnnealingSampler` (simulador clássico do ecossistema D-Wave)
 3. Quando conectado ao D-Wave Leap, basta trocar o sampler para `DWaveSampler()` —
-   a mesma formulação QUBO roda diretamente no QPU real
+   a mesma formulação QUBO roda diretamente no QPU real (desenho pretendido, ainda não exercitado)
 
 1. The VRP formulation is converted into a real `dimod.BinaryQuadraticModel` (BQM)
 2. The BQM is sampled using `neal.SimulatedAnnealingSampler` (D-Wave ecosystem classical simulator)
 3. When connected to D-Wave Leap, simply swap the sampler to `DWaveSampler()` —
-   the same QUBO formulation runs directly on the real QPU
+   the same QUBO formulation runs directly on the real QPU (intended design, not yet exercised)
 
 **Instalação / Installation:**
 ```bash
@@ -238,8 +265,8 @@ python benchmark.py --no-ortools  # sem OR-Tools / skip OR-Tools
 | **Google OR-Tools GLS** | **1.02s** | **40.86 km** | **13.8 kg** | **51.3%** | **baseline** |
 
 > O D-Wave neal fecha **66% do gap** vs OR-Tools (5.6% vs 14.1% do Builtin SA)
-> e é **7.5x mais rápido** que o Builtin SA. A formulação QUBO escalará
-> diretamente para hardware quântico real com zero mudanças de código.
+> e é **7.5x mais rápido** que o Builtin SA. A formulação QUBO foi desenhada para escalar
+> a hardware quântico real sem mudanças de código — ainda não validado contra QPU.
 >
 > D-Wave neal closes **66% of the gap** vs OR-Tools (5.6% vs 14.1% from Builtin SA)
 > and is **7.5x faster** than Builtin SA. The QUBO formulation scales
@@ -323,7 +350,7 @@ O dashboard abre automaticamente no navegador em `http://localhost:8501`.
 │          │                  │                            │
 │ iot_     │ quantum_         │ pqc_wrapper.py             │
 │ bridge.py│ optimizer.py     │   (Kyber768 / Dilithium3   │
-│          │   ├─ BQM (dimod) │    simulado via AES+SHA3)  │
+│          │   ├─ BQM (dimod) │    SIMULADO via SHA3-256)  │
 │ GPS real  │   ├─ neal (SA)  │                            │
 │ (Porto    │   └─ builtin SA  │ security_bridge.py         │
 │  Taxi)    │     (fallback)  │   (encrypt routes,         │
@@ -351,7 +378,7 @@ python run_mvp.py --dwave
 
 **Resultado esperado / Expected output (D-Wave neal):**
 ```
-  Hubstry Quantum Logistics MVP v0.2.0
+  Hubstry Quantum Logistics MVP v0.3.0
   D-Wave Ocean: neal v0.6.0, dimod v0.12.21
 
   Data Source:       Porto Taxi Trajectory Dataset (real GPS)
@@ -374,7 +401,7 @@ python run_mvp.py --dwave
 |---|---|---|
 | **iot-protocol-hubstry** | Telemetria de frota / Fleet telemetry — GPS real (Porto Taxi) | Conceitos integrados + dados reais |
 | **gurudev-core** | Formulação QUBO + D-Wave Ocean SDK | Conceitos integrados + SDK real |
-| **hubstry-security** | Criptografia PQC (Kyber768/Dilithium3) com fallback AES | Conceitos integrados |
+| **hubstry-security** | Criptografia PQC — simulação didática (ver Aviso de Segurança) | Conceitos integrados |
 
 ## Tecnologias Principais / Key Technologies
 
@@ -383,7 +410,7 @@ python run_mvp.py --dwave
 - **Simulated Annealing** — solver builtin em Python puro (zero dependências / zero dependencies)
 - **Google OR-Tools** — benchmark da indústria (Guided Local Search para CVRP)
 - **Distância Haversine** — roteamento geolocalizado / GPS-aware routing (Porto, Portugal)
-- **Kyber768 / Dilithium3** — padrões NIST de PQC simulados via AES-256+SHA3
+- **Kyber768 / Dilithium3** — nomes de padrões NIST usados como *placeholder*; a implementação atual é uma simulação didática com keystream SHA3-256 (XOR, não-AEAD). Ver Aviso de Segurança.
 - **EU 2030 CO₂ targets** — rastreamento de redução de 55% vs linha de base de 1990 / 55% reduction tracking
 - **Porto Taxi Dataset** — GPS real de 442 táxis, validado em papers de VRP
 
@@ -437,7 +464,7 @@ hubstry-logistics-quantum/
 - [x] Integração D-Wave Ocean SDK (dimod BQM + neal sampler)
 - [x] Benchmark vs Google OR-Tools — 3 solvers com auto-detecção / 3-solver auto-detect
 - [ ] Conexão ao QPU real D-Wave Advantage via Leap
-- [ ] Dashboard Streamlit com visualização de rotas / Route visualization dashboard
+- [x] Dashboard Streamlit com visualização de rotas / Route visualization dashboard
 - [ ] Ingestão de dados ao vivo / Live fleet data (MQTT / REST API)
 - [ ] Formulação VRP multi-depósito / Multi-depot VRP formulation
 - [ ] Solver híbrido QAOA + heurísticas / Hybrid QAOA + heuristic solver
