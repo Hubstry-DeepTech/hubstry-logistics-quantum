@@ -33,3 +33,6 @@ desktop.ini
 # Environment variables
 .env
 .env.local
+
+# Artefatos gerados em execucao / Runtime-generated artifacts
+mvp_results.json
